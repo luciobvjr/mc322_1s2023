@@ -4,6 +4,15 @@ public class Seguradora {
     String email;
     String endereco;
 
+    // INITIALIZER
+    public Seguradora(String nome, String telefone, String email, String endereco) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.endereco = endereco;
+    }
+
+    // GETTERS
     public String getNome() {
         return this.nome;
     }
@@ -20,6 +29,7 @@ public class Seguradora {
         return this.endereco;
     }
 
+    // SETTERS
     public void setNome(String nome) {
         this.nome = nome;
     }
