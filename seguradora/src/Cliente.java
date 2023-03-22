@@ -55,4 +55,17 @@ public class Cliente {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    // MÉTODOS PRIVADOS
+    private boolean validarCPF(String cpf) {
+        String numericCpf = cpf.replaceAll("/\\D+/g", cpf);
+
+        if (numericCpf.length() < 11) {
+            return false;
+        }
+
+        
+
+        return true;
+    }
 }
