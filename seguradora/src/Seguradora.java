@@ -1,8 +1,8 @@
 public class Seguradora {
-    String nome;
-    String telefone;
-    String email;
-    String endereco;
+    private String nome;
+    private String telefone;
+    private String email;
+    private String endereco;
 
     // INITIALIZER
     public Seguradora(String nome, String telefone, String email, String endereco) {

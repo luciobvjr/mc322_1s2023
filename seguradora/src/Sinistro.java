@@ -1,14 +1,13 @@
 import java.util.Random;
 
 public class Sinistro {
-    Integer id;
-    String data;
-    String endereco;
+    private Integer id;
+    private String data;
+    private String endereco;
 
     // INITIALIZER
     public Sinistro(String data, String endereco) {
-        Random random = new Random();
-        this.id = random.nextInt();
+        this.id = getRandomID();
         this.data = data;
         this.endereco = endereco;
     }
@@ -37,5 +36,11 @@ public class Sinistro {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    // MÉTODOS PRIVADOS
+    private Integer getRandomID() {
+        Random random = new Random();
+        return random.nextInt();
     }
 }
