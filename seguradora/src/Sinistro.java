@@ -5,7 +5,7 @@ public class Sinistro {
     private String data;
     private String endereco;
 
-    // INITIALIZER
+    // CONSTRUCTOR
     public Sinistro(String data, String endereco) {
         this.id = getRandomID();
         this.data = data;
