@@ -1,3 +1,9 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+
 public class Cliente {
     private String nome;
     private String cpf;
@@ -6,12 +12,22 @@ public class Cliente {
     private String endereco;
 
     // CONSTRUCTOR
-    public Cliente(String nome, String cpf, String dataNascimento, Integer idade, String endereco) {
+    public Cliente(String nome, String cpf, String dataNascimento, String endereco) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
-        this.idade = idade;
-        this.endereco = endereco;    
+        this.endereco = endereco;   
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+        try {
+            LocalDate dataFormatada = formato.parse(dataNascimento).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
+            LocalDate dataAtual = LocalDate.now();
+            Period periodo = Period.between(dataFormatada, dataAtual);
+            this.idade = periodo.getYears();
+        } catch (ParseException e) {
+            this.idade = null;
+        } 
+
     }
 
     // GETTERS
