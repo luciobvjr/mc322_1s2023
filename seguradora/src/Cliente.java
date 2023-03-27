@@ -60,11 +60,22 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    // MÉTODOS ESTÁTICOS
+    // MÉTODOS PÚBLICOS
     static public boolean validarCPF(String cpf) {
         String numericCpf = cpf.replaceAll("[^0-9]", "");
 
         return cpfTemOnzeDigitos(numericCpf) && !cpfTemTodosDigitosIguais(numericCpf) && digitoVerificadorValido(numericCpf);
+    }
+
+    @Override
+    public String toString() {
+        String descricao = "";
+        descricao += "Nome: " + nome + "\n";
+        descricao += "CPF: " + cpf + "\n";
+        descricao += "Data de nascimento: " + dataNascimento + "\n";
+        descricao += "Idade: " + idade + "\n";
+        descricao += "Endereço: " + endereco + "\n";
+        return descricao;
     }
 
     // MÉTODOS PRIVADOS
