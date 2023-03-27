@@ -18,16 +18,7 @@ public class Cliente {
         this.dataNascimento = dataNascimento;
         this.endereco = endereco;   
         
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-        try {
-            LocalDate dataFormatada = formato.parse(dataNascimento).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
-            LocalDate dataAtual = LocalDate.now();
-            Period periodo = Period.between(dataFormatada, dataAtual);
-            this.idade = periodo.getYears();
-        } catch (ParseException e) {
-            this.idade = null;
-        } 
-
+        configurarIdadeAPartirDoAniversário();
     }
 
     // GETTERS
@@ -62,10 +53,7 @@ public class Cliente {
 
     public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
-    }
-
-    public void setIdade(Integer idade) {
-        this.idade = idade;
+        configurarIdadeAPartirDoAniversário();
     }
 
     public void setEndereco(String endereco) {
@@ -80,6 +68,18 @@ public class Cliente {
     }
 
     // MÉTODOS PRIVADOS
+    private void configurarIdadeAPartirDoAniversário() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+        try {
+            LocalDate dataFormatada = formato.parse(this.dataNascimento).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
+            LocalDate dataAtual = LocalDate.now();
+            Period periodo = Period.between(dataFormatada, dataAtual);
+            this.idade = periodo.getYears();
+        } catch (ParseException e) {
+            this.idade = null;
+        } 
+    }
+
     static private boolean cpfTemOnzeDigitos(String numericCpf) {
         if (numericCpf.length() == 11) {
             return true;

@@ -6,6 +6,8 @@ public class App {
                                       "rua do cliente, 123");
 
         System.out.println(cliente.getIdade());
+        cliente.setDataNascimento("27/07/1991");
+        System.out.println(cliente.getIdade());
 
         Seguradora seguradora = new Seguradora("Seguradora",
                                                "19912345678",
