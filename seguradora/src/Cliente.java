@@ -56,15 +56,69 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    // MÉTODOS PRIVADOS
-    private boolean validarCPF(String cpf) {
+    // MÉTODOS ESTÁTICOS
+    static public boolean validarCPF(String cpf) {
         String numericCpf = cpf.replaceAll("/\\D+/g", cpf);
 
-        if (numericCpf.length() < 11) {
+        return cpfTemOnzeDigitos(numericCpf) && !cpfTemTodosDigitosIguais(numericCpf) && digitoVerificadorValido(numericCpf);
+    }
+
+    // MÉTODOS PRIVADOS
+    static private boolean cpfTemOnzeDigitos(String numericCpf) {
+        if (numericCpf.length() == 11) {
             return false;
         }
 
-        
+        return true;
+    }
+
+    static private boolean cpfTemTodosDigitosIguais(String numericCpf) {
+        char[] splittedCpf = numericCpf.toCharArray();
+        for (char digit1 : splittedCpf) {
+            for (char digit2 : splittedCpf) {
+                if (digit1 != digit2) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    static private boolean digitoVerificadorValido(String numericCpf) {
+        char[] splittedCpf = numericCpf.toCharArray();
+        int verificador1 = splittedCpf[splittedCpf.length - 2];
+        int verificador2 = splittedCpf[splittedCpf.length - 1];
+
+        // Primeiro dígito verificador
+        int soma = 0;
+        int multiplicador = 10;
+        for (int index = 0; index < splittedCpf.length - 3; index++) {
+            int digito = splittedCpf[index];
+            soma += digito * multiplicador;
+
+            multiplicador--;
+        }
+
+        int resto = soma % 11;
+        if (verificador1 != 11 - resto) {
+            return false;
+        }
+
+        // Segundo dígito verificador
+        soma = 0;
+        multiplicador = 11;
+        for (int index = 0; index < splittedCpf.length - 2; index++) {
+            int digito = splittedCpf[index];
+            soma += digito * multiplicador;
+
+            multiplicador--;
+        }
+
+        resto = soma % 11;
+        if (verificador2 != 11 - resto) {
+            return false;
+        }
 
         return true;
     }
