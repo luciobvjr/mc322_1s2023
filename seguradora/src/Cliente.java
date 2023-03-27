@@ -58,7 +58,7 @@ public class Cliente {
 
     // MÉTODOS ESTÁTICOS
     static public boolean validarCPF(String cpf) {
-        String numericCpf = cpf.replaceAll("/\\D+/g", cpf);
+        String numericCpf = cpf.replaceAll("[^0-9]", "");
 
         return cpfTemOnzeDigitos(numericCpf) && !cpfTemTodosDigitosIguais(numericCpf) && digitoVerificadorValido(numericCpf);
     }
@@ -66,10 +66,10 @@ public class Cliente {
     // MÉTODOS PRIVADOS
     static private boolean cpfTemOnzeDigitos(String numericCpf) {
         if (numericCpf.length() == 11) {
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     static private boolean cpfTemTodosDigitosIguais(String numericCpf) {
@@ -87,36 +87,44 @@ public class Cliente {
 
     static private boolean digitoVerificadorValido(String numericCpf) {
         char[] splittedCpf = numericCpf.toCharArray();
-        int verificador1 = splittedCpf[splittedCpf.length - 2];
-        int verificador2 = splittedCpf[splittedCpf.length - 1];
+        int verificador1 = Character.getNumericValue(splittedCpf[splittedCpf.length - 2]);
+        int verificador2 = Character.getNumericValue(splittedCpf[splittedCpf.length - 1]);
 
         // Primeiro dígito verificador
         int soma = 0;
         int multiplicador = 10;
-        for (int index = 0; index < splittedCpf.length - 3; index++) {
-            int digito = splittedCpf[index];
+        for (int index = 0; index < splittedCpf.length - 2; index++) {
+            int digito = Character.getNumericValue(splittedCpf[index]);
             soma += digito * multiplicador;
 
             multiplicador--;
         }
 
         int resto = soma % 11;
-        if (verificador1 != 11 - resto) {
+        int verificadorCalculado = 11 - resto;
+        if (verificadorCalculado >= 10) {
+            verificadorCalculado = 0;
+        }
+        if (verificador1 != verificadorCalculado) {
             return false;
         }
 
         // Segundo dígito verificador
         soma = 0;
         multiplicador = 11;
-        for (int index = 0; index < splittedCpf.length - 2; index++) {
-            int digito = splittedCpf[index];
+        for (int index = 0; index < splittedCpf.length - 1; index++) {
+            int digito = Character.getNumericValue(splittedCpf[index]);;
             soma += digito * multiplicador;
 
             multiplicador--;
         }
 
         resto = soma % 11;
-        if (verificador2 != 11 - resto) {
+        verificadorCalculado = 11 - resto;
+        if (verificadorCalculado >= 10) {
+            verificadorCalculado = 0;
+        }
+        if (verificador2 != verificadorCalculado) {
             return false;
         }
 
