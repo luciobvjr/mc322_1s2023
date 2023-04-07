@@ -45,4 +45,15 @@ public class Veiculo {
     public void setAnoFabricacao(Integer anoFabricacao) {
         this.anoFabricacao = anoFabricacao;
     }
+
+    // MÉTODOS PÚBLICOS
+    @Override
+    public String toString() {
+        String descricao = "";
+        descricao += "Placa: " + placa + "\n";
+        descricao += "Marca: " + marca + "\n";
+        descricao += "Modelo: " + modelo + "\n";
+        descricao += "Ano de fabricação: " + anoFabricacao + "\n";
+        return descricao;
+    }
 }

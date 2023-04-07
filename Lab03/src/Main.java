@@ -16,10 +16,12 @@ public class Main {
                 "27/03/1991",
                 "rua do cliente, 123");
 
-        seguradora.cadastrarCliente(cliente);
-        System.out.println(seguradora.getListaClientes());
+        Veiculo veiculo = new Veiculo(
+                "PCX-1234",
+                "Volkswagen", 
+                "Fusca", 
+                1992);
 
-        seguradora.removerCliente(cliente.getCpf());
-        System.out.println(seguradora.getListaClientes());
+        System.out.println(veiculo);
     }
 }
