@@ -18,10 +18,17 @@ public class Main {
 
         Veiculo veiculo = new Veiculo(
                 "PCX-1234",
-                "Volkswagen", 
-                "Fusca", 
+                "Volkswagen",
+                "Fusca",
                 1992);
 
-        System.out.println(veiculo);
+        Sinistro sinistro = new Sinistro(
+                "27/03/2000",
+                "Rua do Sinistro, 123",
+                seguradora,
+                veiculo,
+                cliente);
+
+        System.out.println(sinistro);
     }
 }
