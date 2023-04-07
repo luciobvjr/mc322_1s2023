@@ -9,11 +9,14 @@ public class Seguradora {
     private List<Cliente> listaClientes;
 
     // CONSTRUCTOR
-    public Seguradora(String nome, String telefone, String email, String endereco) {
+    public Seguradora(String nome, String telefone, String email, String endereco, List<Sinistro> listaSinistros,
+            List<Cliente> listaClientes) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
         this.endereco = endereco;
+        this.listaSinistros = listaSinistros;
+        this.listaClientes = listaClientes;
     }
 
     // GETTERS
@@ -49,7 +52,7 @@ public class Seguradora {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -64,5 +67,16 @@ public class Seguradora {
 
     public void setListaClientes(List<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
+    }
+
+    // MÉTODOS PÚBLICOS
+    public boolean cadastrarCliente(Cliente cliente) {
+        this.listaClientes.add(cliente);
+        return true;
+    }
+
+    public boolean removerCliente(String cliente) {
+        this.listaClientes.removeIf(c -> (c.getCpf() == cliente));
+        return true;
     }
 }
