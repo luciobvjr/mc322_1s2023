@@ -71,12 +71,19 @@ public class Seguradora {
 
     // MÉTODOS PÚBLICOS
     public boolean cadastrarCliente(Cliente cliente) {
-        this.listaClientes.add(cliente);
-        return true;
+        return this.listaClientes.add(cliente);
     }
 
     public boolean removerCliente(String cliente) {
-        this.listaClientes.removeIf(c -> (c.getCpf() == cliente));
-        return true;
+        for (Cliente clienteObj : listaClientes) {
+            if (clienteObj instanceof ClientePF) {
+                ClientePF clientePF = (ClientePF) clienteObj;
+                if (clientePF.getCpf() == cliente) {
+                    return this.listaClientes.remove(clienteObj);
+                }
+            } // else if (clienteObj instanceof ClientePJ)
+        } 
+
+        return false;
     }
 }
