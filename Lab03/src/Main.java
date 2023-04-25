@@ -78,5 +78,6 @@ public class Main {
         seguradora.gerarSinistro(dataSinistroFormatada, sinistro.getEndereco(), sinistro.getVeiculo(), sinistro.getCliente());
 
         seguradora.listarClientes("PJ");
+        seguradora.listarSinistros();
     }
 }

@@ -71,11 +71,12 @@ public class Sinistro {
     @Override
     public String toString() {
         String descricao = "";
-        descricao += "Id: " + id + "\n";
-        descricao += "Data: " + data + "\n";
-        descricao += "Endereço: " + endereco + "\n";
-        descricao += "Seguradora: " + seguradora.getNome() + "\n";
-        descricao += "Veículo: " + veiculo.getMarca() + " " + veiculo.getModelo() + " | Placa: " + veiculo.getPlaca() + "\n";
+        descricao += "Id: " + id + " | ";
+        descricao += "Data: " + data + " | ";
+        descricao += "Endereço: " + endereco + " | ";
+        descricao += "Seguradora: " + seguradora.getNome() + " | ";
+        descricao += "Veículo: " + veiculo.getMarca() + " " + veiculo.getModelo() + ", Placa: " + veiculo.getPlaca() + " | ";
+        descricao += "Cliente: " + cliente.getNome(); 
         return descricao;
     }
 

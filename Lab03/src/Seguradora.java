@@ -99,11 +99,10 @@ public class Seguradora {
         return false;
     }
 
-    // Lista os clientes da seguradora.
+    // Printa os clientes da seguradora.
     // - Entrada: String "PF" para listar pessoas físicas
     //            String "PJ" para listar pessoas jurídicas
     //            String "GERAL" para listar todos clientes
-    // - Retorna: String contendo as informações dos clientes do tipo selecionado
     public void listarClientes(String tipoCliente) {
         List<String> listaClientesStrings = new LinkedList<String>();
 
@@ -141,6 +140,7 @@ public class Seguradora {
         }
 
         String listaClientedFormatada = String.join("\n", listaClientesStrings);
+        System.out.println("\n---------- Lista de clientes da seguradora: " + this.getNome());
         System.out.println(listaClientedFormatada);
         return;
     }
@@ -154,5 +154,17 @@ public class Seguradora {
         Sinistro sinistro = new Sinistro(data, endereco, this, veiculo, cliente);
         this.listaSinistros.add(sinistro);
         return true;
+    }
+
+    // Printa os sinistros da seguradora.
+    public void listarSinistros() {
+        List<String> listaSinistroStrings = new LinkedList<String>();
+
+        for (Sinistro sinistro : listaSinistros) {
+            listaSinistroStrings.add(sinistro.toString());
+        }
+
+        System.out.println("\n---------- Lista de sinistros da seguradora: " + this.getNome());
+        System.out.println(String.join("\n", listaSinistroStrings));
     }
 }
