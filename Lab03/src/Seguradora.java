@@ -81,9 +81,13 @@ public class Seguradora {
                 if (clientePF.getCpf() == cliente) {
                     return this.listaClientes.remove(clienteObj);
                 }
-            } // else if (clienteObj instanceof ClientePJ)
+            } else if (clienteObj instanceof ClientePJ) {
+                ClientePJ clientePJ = (ClientePJ) clienteObj;
+                if (clientePJ.getCnpj() == cliente) {
+                    return this.listaClientes.remove(clienteObj);
+                }
+            }
         } 
-
         return false;
     }
 }

@@ -1,6 +1,4 @@
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -89,9 +87,9 @@ public class ClientePF extends Cliente {
         return descricao;
     }
 
-    // Verifica se o CPF válidos (Tem 11 dígitos que não são todos iguais e os dígitos verificadores são válidos).
+    // Verifica se o CPF é válido (Tem 11 dígitos que não são todos iguais e os dígitos verificadores são válidos).
     // - Entrada: String representando um CPF. Os caracteres não numéricos são descartados
-    // - Retorn: 'true' o CPF é válido e 'false' caso contrário
+    // - Retorna: 'true' o CPF é válido e 'false' caso contrário
     static public boolean validarCPF(String cpf) {
         String numericCpf = cpf.replaceAll("[^0-9]", "");
 
@@ -100,9 +98,9 @@ public class ClientePF extends Cliente {
 
     // MÉTODOS PRIVADOS
 
-    // Verifica se o CPF tem exatamente onze dígitos.
+    // Verifica se o CPF tem exatamente 11 dígitos.
     // - Entrada: String representando um CPF apenas com caracteres numéricos
-    // - Retorn: 'true' se possui 11 dígitos e 'false' caso contrário
+    // - Retorna: 'true' se possui 11 dígitos e 'false' caso contrário
     static private boolean cpfTemOnzeDigitos(String numericCpf) {
         if (numericCpf.length() == 11) {
             return true;
@@ -111,9 +109,9 @@ public class ClientePF extends Cliente {
         return false;
     }
 
-    // Verifica se todos os dígitos do CPF sãp iguais.
+    // Verifica se todos os dígitos do CPF são iguais.
     // - Entrada: String representando um CPF apenas com caracteres numéricos
-    // - Retorna 'true' se possui todos os dígitos são iguais e 'false' caso contrário
+    // - Retorna 'true' se todos os dígitos são iguais e 'false' caso contrário
     static private boolean cpfTemTodosDigitosIguais(String numericCpf) {
         char[] splittedCpf = numericCpf.toCharArray();
         for (char digit1 : splittedCpf) {

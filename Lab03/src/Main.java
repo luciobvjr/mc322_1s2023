@@ -1,5 +1,4 @@
 import java.util.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -13,7 +12,7 @@ public class Main {
                 "rua do seguro, 123",
                 new ArrayList<Sinistro>(),
                 new ArrayList<Cliente>());
-
+        // Veículo
         Veiculo fuscaVeiculo = new Veiculo(
                 "PCX-1234",
                 "Volkswagen",
@@ -23,6 +22,7 @@ public class Main {
         List<Veiculo> listaVeiculos = new ArrayList<Veiculo>();
         listaVeiculos.add(fuscaVeiculo);
 
+        // Cliente PF
         Calendar calendar = Calendar.getInstance();
         calendar.set(2021, 3, 15);
         Date dataLicenca = calendar.getTime();
@@ -41,6 +41,18 @@ public class Main {
                 dataNascimento,
                 "Média");
 
+        // Cliente PJ
+        calendar.set(2015, 8, 2);
+        Date dataFundacao = calendar.getTime();
+
+        ClientePJ clientePJ = new ClientePJ(
+                "Empresa teste",
+                "Rua da empresa, 321",
+                listaVeiculos,
+                "04.490.765/0001-08",
+                dataFundacao);
+
+
         Sinistro sinistro = new Sinistro(
                 "27/03/2000",
                 "Rua do Sinistro, 123",
@@ -48,6 +60,6 @@ public class Main {
                 fuscaVeiculo,
                 clientePF);
 
-        System.out.println(clientePF);
+        System.out.println(ClientePJ.validarCNPJ(clientePJ.getCnpj()));
     }
 }
