@@ -71,10 +71,17 @@ public class Seguradora {
     }
 
     // MÉTODOS PÚBLICOS
+
+    // Adiciona um novo cliente na seguradora.
+    // - Entrada: Objeto do cliente a ser adicionado
+    // - Retorna: 'true' se o cliente foi adicionado com sucesso e 'false' caso contrário
     public boolean cadastrarCliente(Cliente cliente) {
         return this.listaClientes.add(cliente);
     }
 
+    // Remove um cliente da seguradora.
+    // - Entrada: CPF(caso PF) ou CNPJ(caso PJ) do cliente a ser removido
+    // - Retorna: 'true' se o cliente foi removido com sucesso e 'false' caso contrário
     public boolean removerCliente(String cliente) {
         for (Cliente clienteObj : listaClientes) {
             if (clienteObj instanceof ClientePF) {
