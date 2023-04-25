@@ -79,5 +79,6 @@ public class Main {
 
         seguradora.listarClientes("PJ");
         seguradora.listarSinistros();
+        seguradora.visualizarSinistro(clientePF.getCpf());
     }
 }

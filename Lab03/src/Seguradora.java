@@ -149,11 +149,10 @@ public class Seguradora {
     // - Entrada: endereco - String representando o endereço do sinistro
     //            veiculo - Veiculo da ocorrência do sinistro
     //            cliente - Cliente relacionado ao sinistro
-    // - Retorna: 'true'
+    // - Retorna: 'true' se o sinistro foi adicionado com sucesso e 'false' caso contrário
     public boolean gerarSinistro(String data, String endereco, Veiculo veiculo, Cliente cliente) {
         Sinistro sinistro = new Sinistro(data, endereco, this, veiculo, cliente);
-        this.listaSinistros.add(sinistro);
-        return true;
+        return this.listaSinistros.add(sinistro);
     }
 
     // Printa os sinistros da seguradora.
@@ -166,5 +165,37 @@ public class Seguradora {
 
         System.out.println("\n---------- Lista de sinistros da seguradora: " + this.getNome());
         System.out.println(String.join("\n", listaSinistroStrings));
+    }
+
+    // Printa sinistro relativo a um cliente"
+    // - Entrada: String "cliente" representando o documento de um cliente
+    public void visualizarSinistro(String cliente) {
+        boolean clientePessoaFisica = ClientePF.validarCPF(cliente);
+        boolean clientePessoaJuridica = ClientePJ.validarCNPJ(cliente);
+
+        if (!clientePessoaFisica && !clientePessoaJuridica) {
+            System.out.println("\nErro ao buscar sinistro: Documento do cliente inválido: " + cliente);
+            return;
+        }
+
+        for (Sinistro sinistro : this.getListaSinistros()) {
+            if (clientePessoaFisica && sinistro.getCliente() instanceof ClientePF) {
+                ClientePF clientePF = (ClientePF) sinistro.getCliente();
+                if (clientePF.getCpf() == cliente) {
+                    System.out.println("\n---------- Sinistro relacionado ao cliente com CPF: " + cliente);
+                    System.out.println(sinistro.toString());
+                    return;
+                }
+            } else if (clientePessoaJuridica && sinistro.getCliente() instanceof ClientePJ) {
+                ClientePJ clientePJ = (ClientePJ) sinistro.getCliente();
+                if (clientePJ.getCnpj() == cliente) {
+                    System.out.println("\n---------- Sinistro relacionado ao cliente com CNPJ: " + cliente);
+                    System.out.println(sinistro.toString());
+                    return;
+                }
+            }
+        }
+
+        System.out.println("\nErro ao buscar sinistro: Nenhum sinistro relacionado ao cliente com documento " + cliente + " foi encontrado.");
     }
 }
