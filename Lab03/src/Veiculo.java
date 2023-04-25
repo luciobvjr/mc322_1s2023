@@ -50,10 +50,10 @@ public class Veiculo {
     @Override
     public String toString() {
         String descricao = "";
-        descricao += "Placa: " + placa + "\n";
-        descricao += "Marca: " + marca + "\n";
-        descricao += "Modelo: " + modelo + "\n";
-        descricao += "Ano de fabricação: " + anoFabricacao + "\n";
+        descricao += "Placa: " + placa + " | ";
+        descricao += "Marca: " + marca + " | ";
+        descricao += "Modelo: " + modelo + " | ";
+        descricao += "Ano de fabricação: " + anoFabricacao;
         return descricao;
     }
 }

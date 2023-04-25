@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -71,6 +72,30 @@ public class Seguradora {
     }
 
     // MÉTODOS PÚBLICOS
+    @Override
+    public String toString() {
+        List<String> nomesClientes = new ArrayList<String>();
+        for (Cliente cliente : getListaClientes()) {
+            nomesClientes.add(cliente.getNome());
+        }
+        String nomesClientesFormatado = String.join(", ", nomesClientes);
+
+        List<String> idSinistros = new ArrayList<String>();
+        for (Sinistro sinistro : getListaSinistros()) {
+            String stringId = sinistro.getId().toString();
+            idSinistros.add(stringId);
+        }
+        String idSinistrosFormatado = String.join(", ", idSinistros);
+
+        String descricao = "";
+        descricao += "Nome: " + getNome() + " | ";
+        descricao += "Telefone: " + getTelefone() + " | ";
+        descricao += "Email: " + getEmail() + " | ";
+        descricao += "Endereco: " + getEndereco() + " | ";
+        descricao += "Lista de sinistros: " + idSinistrosFormatado + " | ";
+        descricao += "Lista de clientes: " + nomesClientesFormatado; 
+        return descricao;
+    }
 
     // Adiciona um novo cliente na seguradora.
     // - Entrada: Objeto do cliente a ser adicionado
@@ -181,14 +206,14 @@ public class Seguradora {
         for (Sinistro sinistro : this.getListaSinistros()) {
             if (clientePessoaFisica && sinistro.getCliente() instanceof ClientePF) {
                 ClientePF clientePF = (ClientePF) sinistro.getCliente();
-                if (clientePF.getCpf() == cliente) {
+                if (clientePF.getCpf().equals(cliente)) {
                     System.out.println("\n---------- Sinistro relacionado ao cliente com CPF: " + cliente);
                     System.out.println(sinistro.toString());
                     return;
                 }
             } else if (clientePessoaJuridica && sinistro.getCliente() instanceof ClientePJ) {
                 ClientePJ clientePJ = (ClientePJ) sinistro.getCliente();
-                if (clientePJ.getCnpj() == cliente) {
+                if (clientePJ.getCnpj().equals(cliente)) {
                     System.out.println("\n---------- Sinistro relacionado ao cliente com CNPJ: " + cliente);
                     System.out.println(sinistro.toString());
                     return;
