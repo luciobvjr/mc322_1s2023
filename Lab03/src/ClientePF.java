@@ -1,4 +1,5 @@
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -74,16 +75,22 @@ public class ClientePF extends Cliente {
         String dataNascimentoFormadata = new SimpleDateFormat("dd-MM-yyyy").format(getDataNascimento());
         String dataLicencaFormatada = new SimpleDateFormat("dd-MM-yyyy").format(getDataLicenca());
 
+        List<String> placasVeiculos = new ArrayList<String>();
+        for (Veiculo veiculo : getListaVeiculos()) {
+            placasVeiculos.add(veiculo.getPlaca());
+        }
+        String placasVeiculosFormatada = String.join(", ", placasVeiculos);
+
         String descricao = "";
-        descricao += "Nome: " + getNome() + "\n";
-        descricao += "CPF: " + getCpf() + "\n";
-        descricao += "Gênero: " + getGenero() + "\n";
-        descricao += "Data de nascimento: " + dataNascimentoFormadata + "\n";
-        descricao += "Endereço: " + getEndereco() + "\n";
-        descricao += "Lista de veículos: " + getListaVeiculos() + "\n";
-        descricao += "Data de licença: " + dataLicencaFormatada + "\n";
-        descricao += "Educação: " + getEducacao() + "\n";
-        descricao += "Classe econômica: " + getClasseEconomica() + "\n";
+        descricao += "Nome: " + getNome() + " | ";
+        descricao += "CPF: " + getCpf() + " | ";
+        descricao += "Gênero: " + getGenero() + " | ";
+        descricao += "Data de nascimento: " + dataNascimentoFormadata + " | ";
+        descricao += "Endereço: " + getEndereco() + " | ";
+        descricao += "Lista de veículos: " + placasVeiculosFormatada + " | ";
+        descricao += "Data de licença: " + dataLicencaFormatada + " | ";
+        descricao += "Educação: " + getEducacao() + " | ";
+        descricao += "Classe econômica: " + getClasseEconomica();
         return descricao;
     }
 

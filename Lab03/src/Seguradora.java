@@ -1,5 +1,3 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -94,11 +92,11 @@ public class Seguradora {
         return false;
     }
 
-    // Lista os CPF (caso pessoa física) ou CNPJ (caso pessoa jurídica) dos clientes da seguradora.
+    // Lista os clientes da seguradora.
     // - Entrada: String "PF" para listar pessoas físicas
     //            String "PJ" para listar pessoas jurídicas
     //            String "GERAL" para listar todos clientes
-    // - Retorna: String contendo os documentos dos clientes do tipo selecionado
+    // - Retorna: String contendo as informações dos clientes do tipo selecionado
     public String listarClientes(String tipoCliente) {
         List<String> listaDocumentos = new LinkedList<String>();
 
@@ -107,7 +105,7 @@ public class Seguradora {
                 for (Cliente clienteObj : listaClientes) {
                     if (clienteObj instanceof ClientePF) {
                         ClientePF clientePF = (ClientePF) clienteObj;
-                        listaDocumentos.add(clientePF.getCpf());
+                        listaDocumentos.add(clientePF.toString());
                     }
                 }
                 break;
@@ -115,7 +113,7 @@ public class Seguradora {
                 for (Cliente clienteObj : listaClientes) {
                     if (clienteObj instanceof ClientePJ) {
                         ClientePJ clientePJ = (ClientePJ) clienteObj;
-                        listaDocumentos.add(clientePJ.getCnpj());
+                        listaDocumentos.add(clientePJ.toString());
                     }
                 }
                 break;
@@ -123,10 +121,10 @@ public class Seguradora {
                 for (Cliente clienteObj : listaClientes) {
                     if (clienteObj instanceof ClientePF) {
                         ClientePF clientePF = (ClientePF) clienteObj;
-                        listaDocumentos.add(clientePF.getCpf());
+                        listaDocumentos.add(clientePF.toString());
                     } else if (clienteObj instanceof ClientePJ) {
                         ClientePJ clientePJ = (ClientePJ) clienteObj;
-                        listaDocumentos.add(clientePJ.getCnpj());
+                        listaDocumentos.add(clientePJ.toString());
                     }
                 }
                 break;
@@ -134,7 +132,7 @@ public class Seguradora {
                 return "Tipo de cliente inválido. Tente 'PF' para listar pessoas físicas, 'PJ' para listar pessoas jurídicas ou 'GERAL' para listar todos os clientes";
         }
 
-        String listaClientedFormatada = String.join(", ", listaDocumentos);
+        String listaClientedFormatada = String.join("\n", listaDocumentos);
         return listaClientedFormatada;
     }
 }

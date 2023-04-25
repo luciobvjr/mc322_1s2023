@@ -1,4 +1,5 @@
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,13 +32,19 @@ public class ClientePJ extends Cliente {
     @Override
     public String toString() {
         String dataFundacaoFormadata = new SimpleDateFormat("dd-MM-yyyy").format(getDataFundacao());
+        
+        List<String> placasVeiculos = new ArrayList<String>();
+        for (Veiculo veiculo : getListaVeiculos()) {
+            placasVeiculos.add(veiculo.getPlaca());
+        }
+        String placasVeiculosFormatada = String.join(", ", placasVeiculos);
 
         String descricao = "";
-        descricao += "Nome: " + getNome() + "\n";
-        descricao += "CNPJ: " + getCnpj() + "\n";
-        descricao += "Data de Fundação: " + dataFundacaoFormadata + "\n";
-        descricao += "Endereço: " + getEndereco() + "\n";
-        descricao += "Lista de veículos: " + getListaVeiculos() + "\n";
+        descricao += "Nome: " + getNome() + " | ";
+        descricao += "CNPJ: " + getCnpj() + " | ";
+        descricao += "Data de Fundação: " + dataFundacaoFormadata + " | ";
+        descricao += "Endereço: " + getEndereco() + " | ";
+        descricao += "Lista de veículos: " + placasVeiculosFormatada;
         return descricao;
     }
 
