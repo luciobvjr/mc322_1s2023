@@ -5,14 +5,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Seguradora seguradora = new Seguradora(
-                "Seguradora TOP",
-                "912345678",
-                "top@seguradora.com",
-                "rua do seguro, 123",
-                new ArrayList<Sinistro>(),
-                new ArrayList<Cliente>());
         // Veículo
+
         Veiculo fuscaVeiculo = new Veiculo(
                 "PCX-1234",
                 "Volkswagen",
@@ -23,6 +17,7 @@ public class Main {
         listaVeiculos.add(fuscaVeiculo);
 
         // Cliente PF
+
         Calendar calendar = Calendar.getInstance();
         calendar.set(2021, 3, 15);
         Date dataLicenca = calendar.getTime();
@@ -42,6 +37,7 @@ public class Main {
                 "Média");
 
         // Cliente PJ
+
         calendar.set(2015, 8, 2);
         Date dataFundacao = calendar.getTime();
 
@@ -52,14 +48,32 @@ public class Main {
                 "04.490.765/0001-08",
                 dataFundacao);
 
+        // Sinistro
 
         Sinistro sinistro = new Sinistro(
                 "27/03/2000",
                 "Rua do Sinistro, 123",
-                seguradora,
+                null,
                 fuscaVeiculo,
                 clientePF);
 
-        System.out.println(ClientePJ.validarCNPJ(clientePJ.getCnpj()));
+        // Seguradora 
+
+        List<Cliente> listaClientes = new ArrayList<>();
+        listaClientes.add(clientePF);
+        listaClientes.add(clientePJ);
+
+        List<Sinistro> listaSinistros = new ArrayList<>();
+        listaSinistros.add(sinistro);
+
+        Seguradora seguradora = new Seguradora(
+                "Seguradora TOP",
+                "912345678",
+                "top@seguradora.com",
+                "rua do seguro, 123",
+                listaSinistros,
+                listaClientes);
+
+        System.out.println(seguradora.listarClientes("GERAL"));
     }
 }
