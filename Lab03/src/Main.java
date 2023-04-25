@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -63,17 +64,19 @@ public class Main {
         listaClientes.add(clientePF);
         listaClientes.add(clientePJ);
 
-        List<Sinistro> listaSinistros = new ArrayList<>();
-        listaSinistros.add(sinistro);
-
         Seguradora seguradora = new Seguradora(
                 "Seguradora TOP",
                 "912345678",
                 "top@seguradora.com",
                 "rua do seguro, 123",
-                listaSinistros,
+                new ArrayList<Sinistro>(),
                 listaClientes);
 
-        System.out.println(seguradora.listarClientes("GERAL"));
+        calendar.set(2021, 2, 15);
+        Date dataSinistro = calendar.getTime();
+        String dataSinistroFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataSinistro);
+        seguradora.gerarSinistro(dataSinistroFormatada, sinistro.getEndereco(), sinistro.getVeiculo(), sinistro.getCliente());
+
+        System.out.println(seguradora.getListaSinistros());
     }
 }

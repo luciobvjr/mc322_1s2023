@@ -142,4 +142,15 @@ public class Seguradora {
         String listaClientedFormatada = String.join("\n", listaDocumentos);
         return listaClientedFormatada;
     }
+
+    // Gera um novo sinistro.
+    // - Entrada: endereco - String representando o endereço do sinistro
+    //            veiculo - Veiculo da ocorrência do sinistro
+    //            cliente - Cliente relacionado ao sinistro
+    // - Retorna: 'true'
+    public boolean gerarSinistro(String data, String endereco, Veiculo veiculo, Cliente cliente) {
+        Sinistro sinistro = new Sinistro(data, endereco, this, veiculo, cliente);
+        this.listaSinistros.add(sinistro);
+        return true;
+    }
 }
