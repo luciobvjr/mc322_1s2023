@@ -2,12 +2,14 @@ public class Veiculo {
     private String placa;
     private String marca;
     private String modelo;
+    private Integer anoFabricacao;
 
     // CONSTRUCTOR
-    public Veiculo(String placa, String marca, String modelo) {
+    public Veiculo(String placa, String marca, String modelo, Integer anoFabricacao) {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
+        this.anoFabricacao = anoFabricacao;
     }
 
     // GETTERS
@@ -23,6 +25,10 @@ public class Veiculo {
         return this.modelo;
     }
 
+    public Integer getAnoFabricacao() {
+        return anoFabricacao;
+    }
+
     // SETTERS
     public void setPlaca(String placa) {
         this.placa = placa;
@@ -34,5 +40,20 @@ public class Veiculo {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
+    }
+
+    public void setAnoFabricacao(Integer anoFabricacao) {
+        this.anoFabricacao = anoFabricacao;
+    }
+
+    // MÉTODOS PÚBLICOS
+    @Override
+    public String toString() {
+        String descricao = "";
+        descricao += "Placa: " + placa + " | ";
+        descricao += "Marca: " + marca + " | ";
+        descricao += "Modelo: " + modelo + " | ";
+        descricao += "Ano de fabricação: " + anoFabricacao;
+        return descricao;
     }
 }
