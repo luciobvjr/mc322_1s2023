@@ -77,6 +77,6 @@ public class Main {
         String dataSinistroFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataSinistro);
         seguradora.gerarSinistro(dataSinistroFormatada, sinistro.getEndereco(), sinistro.getVeiculo(), sinistro.getCliente());
 
-        System.out.println(seguradora.getListaSinistros());
+        seguradora.listarClientes("PJ");
     }
 }

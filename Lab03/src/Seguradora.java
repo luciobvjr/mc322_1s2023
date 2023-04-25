@@ -104,15 +104,15 @@ public class Seguradora {
     //            String "PJ" para listar pessoas jurídicas
     //            String "GERAL" para listar todos clientes
     // - Retorna: String contendo as informações dos clientes do tipo selecionado
-    public String listarClientes(String tipoCliente) {
-        List<String> listaDocumentos = new LinkedList<String>();
+    public void listarClientes(String tipoCliente) {
+        List<String> listaClientesStrings = new LinkedList<String>();
 
         switch (tipoCliente) {
             case "PF":
                 for (Cliente clienteObj : listaClientes) {
                     if (clienteObj instanceof ClientePF) {
                         ClientePF clientePF = (ClientePF) clienteObj;
-                        listaDocumentos.add(clientePF.toString());
+                        listaClientesStrings.add(clientePF.toString());
                     }
                 }
                 break;
@@ -120,7 +120,7 @@ public class Seguradora {
                 for (Cliente clienteObj : listaClientes) {
                     if (clienteObj instanceof ClientePJ) {
                         ClientePJ clientePJ = (ClientePJ) clienteObj;
-                        listaDocumentos.add(clientePJ.toString());
+                        listaClientesStrings.add(clientePJ.toString());
                     }
                 }
                 break;
@@ -128,19 +128,21 @@ public class Seguradora {
                 for (Cliente clienteObj : listaClientes) {
                     if (clienteObj instanceof ClientePF) {
                         ClientePF clientePF = (ClientePF) clienteObj;
-                        listaDocumentos.add(clientePF.toString());
+                        listaClientesStrings.add(clientePF.toString());
                     } else if (clienteObj instanceof ClientePJ) {
                         ClientePJ clientePJ = (ClientePJ) clienteObj;
-                        listaDocumentos.add(clientePJ.toString());
+                        listaClientesStrings.add(clientePJ.toString());
                     }
                 }
                 break;
             default:
-                return "Tipo de cliente inválido. Tente 'PF' para listar pessoas físicas, 'PJ' para listar pessoas jurídicas ou 'GERAL' para listar todos os clientes";
+                System.out.println("Tipo de cliente inválido. Tente 'PF' para listar pessoas físicas, 'PJ' para listar pessoas jurídicas ou 'GERAL' para listar todos os clientes");
+                return;
         }
 
-        String listaClientedFormatada = String.join("\n", listaDocumentos);
-        return listaClientedFormatada;
+        String listaClientedFormatada = String.join("\n", listaClientesStrings);
+        System.out.println(listaClientedFormatada);
+        return;
     }
 
     // Gera um novo sinistro.
