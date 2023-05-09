@@ -156,10 +156,12 @@ public class Main {
         seguradora.visualizarSinistro(clienteFisico1.getCpf());
 
         // Método para visualizar dados de seguradora a partir de entrada
-        menuPrincipal();
+        List<Seguradora> seguradoras = new ArrayList<>();
+        seguradoras.add(seguradora);
+        menuPrincipal(seguradoras);
     }
 
-    public static void menuPrincipal() {
+    public static void menuPrincipal(List<Seguradora> seguradoras) {
         String menuTextual = "";
         menuTextual += "\nDigite o número em frente à ação descrita para realizá-la:\n";
         menuTextual += "0 - Sair\n";
@@ -179,13 +181,13 @@ public class Main {
                         // encerrar o programa
                         break;
                 case "1":
-                        menuCadastro();
+                        menuCadastro(seguradoras);
                         break;
                 case "2":
-                        menuListar();
+                        menuListar(seguradoras);
                         break;
                 case "3":
-                        menuExcluir();
+                        menuExcluir(seguradoras);
                         break;
                 case "4":
                         // gerar sinistro
@@ -204,7 +206,7 @@ public class Main {
         scanner.close();
     }
 
-    public static void menuCadastro() {
+    public static void menuCadastro(List<Seguradora> seguradoras) {
         String menuTextual = "";
         menuTextual += "\nDigite o número em frente à ação descrita para realizá-la:\n";
         menuTextual += "0 - Voltar\n";
@@ -219,7 +221,7 @@ public class Main {
 
         switch (input) {
                 case "0":
-                        menuPrincipal();
+                        menuPrincipal(seguradoras);
                         break;
                 case "1":
                         // Cadastrar cliente PF
@@ -231,7 +233,39 @@ public class Main {
                         // Cadastrar veículo
                         break;
                 case "4":
-                        // Cadastrar seguradora
+                        System.out.println("Nome da seguradora: ");
+                        String nomeSeguradora = scanner.nextLine();
+                        if (nomeSeguradora.isBlank()) {
+                                System.out.println("Erro: Nome inválido");
+                                break;
+                        }
+
+                        System.out.println("\nTelefone da seguradora (Digite apenas os números)");
+                        String telefone = scanner.nextLine();
+                        if (!Validacao.validarTelefone(telefone)) {
+                                System.out.println("Erro: Número de telefone inválido");
+                                break;
+                        }
+
+                        System.out.println("\nEmail da seguradora");
+                        String email = scanner.nextLine();
+                        if (!Validacao.validarEmail(email)) {
+                                System.out.println("Erro: Endereço de email inválido");
+                                break;
+                        }
+
+                        System.out.println("\nEndereço da seguradora");
+                        String endereco = scanner.nextLine();
+                        if (endereco.isBlank()) {
+                                System.out.println("Erro: Endereço inválido");
+                                break;
+                        }
+
+                        Seguradora seguradora = new Seguradora(nomeSeguradora, telefone, email, endereco, new ArrayList<Sinistro>(), new ArrayList<Cliente>());
+                        seguradoras.add(seguradora);
+
+                        System.out.println("\nSeguradora " + seguradora.getNome() + " cadastrada com sucesso!!!");
+                        menuPrincipal(seguradoras);
                         break;
                 default:
                         System.out.println("Operação inválida. Tente novamente com uma das opções apresentadas.");
@@ -241,7 +275,7 @@ public class Main {
         scanner.close();
     }
 
-    public static void menuListar() {
+    public static void menuListar(List<Seguradora> seguradoras) {
         String menuTextual = "";
         menuTextual += "\nDigite o número em frente à ação descrita para realizá-la:\n";
         menuTextual += "0 - Voltar\n";
@@ -256,7 +290,7 @@ public class Main {
 
         switch (input) {
                 case "0":
-                        menuPrincipal();
+                        menuPrincipal(seguradoras);
                         break;
                 case "1":
                         // Listar todos os clientes
@@ -278,7 +312,7 @@ public class Main {
         scanner.close();
     }
 
-    public static void menuExcluir() {
+    public static void menuExcluir(List<Seguradora> seguradoras) {
         String menuTextual = "";
         menuTextual += "\nDigite o número em frente à ação descrita para realizá-la:\n";
         menuTextual += "0 - Voltar\n";
@@ -292,7 +326,7 @@ public class Main {
 
         switch (input) {
                 case "0":
-                        menuPrincipal();
+                        menuPrincipal(seguradoras);
                         break;
                 case "1":
                         // Excluir cliente

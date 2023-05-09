@@ -1,3 +1,5 @@
+import java.util.regex.Pattern;
+
 public class Validacao {
         // Verifica se o CPF é válido (Tem 11 dígitos que não são todos iguais e os dígitos verificadores são válidos).
     // - Entrada: String representando um CPF. Os caracteres não numéricos são descartados
@@ -21,9 +23,44 @@ public class Validacao {
     // - Entrada: String representando um nome
     // - Retorna: 'true' o nome é válido e 'false' caso contrário
     static public boolean validarNomePF(String nome) {
+        if (nome.isBlank()) {
+            return false;
+        }
+
         char[] charArray = nome.toCharArray();
         for (char ch : charArray) {
             if (!Character.isLetter(ch) && !Character.isSpaceChar(ch)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Verifica se o endereço de email é válido.
+    // - Entrada: String representando um endereço de email
+    // - Retorna: 'true' o email é válido e 'false' caso contrário
+    static public boolean validarEmail(String email) {
+        if (email.isBlank()) {
+            return false;
+        }
+
+        String regexPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+        return Pattern.compile(regexPattern)
+                    .matcher(email)
+                    .matches();
+    }
+
+    // Verifica se o número de telefone é válido. (Possui apenas números)
+    // - Entrada: String representando um número de telefone
+    // - Retorna: 'true' o número de telefone é válido e 'false' caso contrário
+    static public boolean validarTelefone(String telefone) {
+        if (telefone.isBlank()) {
+            return false;
+        }
+
+        char[] charArray = telefone.toCharArray();
+        for (char ch : charArray) {
+            if (!Character.isDigit(ch)) {
                 return false;
             }
         }

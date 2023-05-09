@@ -73,6 +73,7 @@ public class Seguradora {
     }
 
     // MÉTODOS PÚBLICOS
+
     @Override
     public String toString() {
         List<String> nomesClientes = new ArrayList<String>();
@@ -80,6 +81,9 @@ public class Seguradora {
             nomesClientes.add(cliente.getNome());
         }
         String nomesClientesFormatado = String.join(", ", nomesClientes);
+        if (nomesClientesFormatado.isBlank()) { 
+            nomesClientesFormatado = "Vazio";
+        }
 
         List<String> idSinistros = new ArrayList<String>();
         for (Sinistro sinistro : getListaSinistros()) {
@@ -87,6 +91,9 @@ public class Seguradora {
             idSinistros.add(stringId);
         }
         String idSinistrosFormatado = String.join(", ", idSinistros);
+        if (idSinistrosFormatado.isBlank()) { 
+            idSinistrosFormatado = "Vazio";
+        }
 
         String descricao = "";
         descricao += "Nome: " + getNome() + " | ";
