@@ -156,44 +156,155 @@ public class Main {
         seguradora.visualizarSinistro(clienteFisico1.getCpf());
 
         // Método para visualizar dados de seguradora a partir de entrada
-        // menu(seguradora);
-
-        for (Cliente cliente : seguradora.getListaClientes()) {
-                System.out.println(cliente.getValorSeguro());
-        }
-        System.out.println(seguradora.calcularReceita());
-
-        System.out.println(Validacao.validarNomePF("Arroz    doce"));
+        menuPrincipal();
     }
 
-    public static void menu(Seguradora seguradora) {
+    public static void menuPrincipal() {
         String menuTextual = "";
         menuTextual += "\nDigite o número em frente à ação descrita para realizá-la:\n";
-        menuTextual += "1 - Visualizar lista de todos os CLIENTES da seguradora\n";
-        menuTextual += "2 - Visualizar lista de todos os CLIENTES PESSOA FÍSICA da seguradora\n";
-        menuTextual += "3 - Visualizar lista de todos os CLIENTES PESSOA JURÍDICA da seguradora\n";
-        menuTextual += "4 - Visualizar lista de todos os SINISTROS da seguradora\n";
-        menuTextual += "N° do documento - Visualizar SINISTRO referente ao cliente que possui o documento inserido\n";
+        menuTextual += "0 - Sair\n";
+        menuTextual += "1 - Cadastros\n";
+        menuTextual += "2 - Listar\n";
+        menuTextual += "3 - Excluir\n";
+        menuTextual += "4 - Gerar Sinistro\n";
+        menuTextual += "5 - Transferir Seguro\n";
+        menuTextual += "6 - Calcular Receita da Seguradora\n";
         System.out.println(menuTextual);
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
         switch (input) {
+                case "0":
+                        // encerrar o programa
+                        break;
                 case "1":
-                        seguradora.listarClientes("GERAL");
+                        menuCadastro();
                         break;
                 case "2":
-                        seguradora.listarClientes("PF");
+                        menuListar();
                         break;
                 case "3":
-                        seguradora.listarClientes("PJ");
+                        menuExcluir();
                         break;
                 case "4":
-                        seguradora.listarSinistros();
+                        // gerar sinistro
+                        break;
+                case "5":
+                        // transferir seguro
+                        break;
+                case "6":
+                        // calcular receita
                         break;
                 default:
-                        seguradora.visualizarSinistro(input);
+                        System.out.println("Operação inválida. Tente novamente com uma das opções apresentadas.");
+                        break;
+        }
+
+        scanner.close();
+    }
+
+    public static void menuCadastro() {
+        String menuTextual = "";
+        menuTextual += "\nDigite o número em frente à ação descrita para realizá-la:\n";
+        menuTextual += "0 - Voltar\n";
+        menuTextual += "1 - Cadastrar cliente PF\n";
+        menuTextual += "2 - Cadastrar cliente PJ\n";
+        menuTextual += "3 - Cadastrar veículo\n";
+        menuTextual += "4 - Cadastrar seguradora\n";
+        System.out.println(menuTextual);
+
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        switch (input) {
+                case "0":
+                        menuPrincipal();
+                        break;
+                case "1":
+                        // Cadastrar cliente PF
+                        break;
+                case "2":
+                        // Cadastrar cliente PJ
+                        break;
+                case "3":
+                        // Cadastrar veículo
+                        break;
+                case "4":
+                        // Cadastrar seguradora
+                        break;
+                default:
+                        System.out.println("Operação inválida. Tente novamente com uma das opções apresentadas.");
+                        break;
+        }
+
+        scanner.close();
+    }
+
+    public static void menuListar() {
+        String menuTextual = "";
+        menuTextual += "\nDigite o número em frente à ação descrita para realizá-la:\n";
+        menuTextual += "0 - Voltar\n";
+        menuTextual += "1 - Listar todos os clientes\n";
+        menuTextual += "2 - Listar clientes PF\n";
+        menuTextual += "3 - Listar clientes PJ\n";
+        menuTextual += "4 - Listar Sinistros\n";
+        System.out.println(menuTextual);
+
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        switch (input) {
+                case "0":
+                        menuPrincipal();
+                        break;
+                case "1":
+                        // Listar todos os clientes
+                        break;
+                case "2":
+                        // Listar clientes PF
+                        break;
+                case "3":
+                        // Listar clientes PJ
+                        break;
+                case "4":
+                        // Listar sinistros
+                        break;
+                default:
+                        System.out.println("Operação inválida. Tente novamente com uma das opções apresentadas.");
+                        break;
+        }
+
+        scanner.close();
+    }
+
+    public static void menuExcluir() {
+        String menuTextual = "";
+        menuTextual += "\nDigite o número em frente à ação descrita para realizá-la:\n";
+        menuTextual += "0 - Voltar\n";
+        menuTextual += "1 - Excluir cliente\n";
+        menuTextual += "2 - Excluir veículo\n";
+        menuTextual += "3 - Excluir sinistro\n";
+        System.out.println(menuTextual);
+
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        switch (input) {
+                case "0":
+                        menuPrincipal();
+                        break;
+                case "1":
+                        // Excluir cliente
+                        break;
+                case "2":
+                        // Excluir veículo
+                        break;
+                case "3":
+                        // Excluir sinistro
+                        break;
+                default:
+                        System.out.println("Operação inválida. Tente novamente com uma das opções apresentadas.");
                         break;
         }
 
