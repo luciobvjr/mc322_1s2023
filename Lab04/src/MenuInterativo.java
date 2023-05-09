@@ -1,4 +1,7 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -60,9 +63,11 @@ public class MenuInterativo {
                 if (input.equals(MenuCadastro.VOLTAR.operacao)) {
                         menuPrincipal(seguradoras);
                 } else if (input.equals(MenuCadastro.CADASTRAR_CLIENTE_PF.operacao)) {
-                        // Cadastrar cliente PF
+                        cadastrarClientePF(scanner, seguradoras);
+                        menuPrincipal(seguradoras);
                 } else if (input.equals(MenuCadastro.CADASTRAR_CLIENTE_PJ.operacao)) {
-                        // Cadastrar cliente PJ
+                        cadastrarClientePJ(scanner, seguradoras);
+                        menuPrincipal(seguradoras);
                 } else if (input.equals(MenuCadastro.CADASTRAR_VEICULO.operacao)) {
                         // Cadastrar veículo
                 } else if (input.equals(MenuCadastro.CADASTRAR_SEGURADORA.operacao)) {
@@ -138,34 +143,160 @@ public class MenuInterativo {
 
         private static Seguradora criarSeguradora(Scanner scanner) {
                 System.out.println("Nome da seguradora: ");
-                        String nomeSeguradora = scanner.nextLine();
-                        if (nomeSeguradora.isBlank()) {
-                                System.out.println("Erro: Nome inválido");
-                        }
+                String nomeSeguradora = scanner.nextLine();
+                if (nomeSeguradora.isBlank()) {
+                        System.out.println("\nErro: Nome inválido");
+                }
 
-                        System.out.println("\nTelefone da seguradora (Digite apenas os números)");
-                        String telefone = scanner.nextLine();
-                        if (!Validacao.validarTelefone(telefone)) {
-                                System.out.println("Erro: Número de telefone inválido");
-                        }
+                System.out.println("\nTelefone da seguradora (Digite apenas os números)");
+                String telefone = scanner.nextLine();
+                if (!Validacao.validarTelefone(telefone)) {
+                        System.out.println("\nErro: Número de telefone inválido");
+                }
 
-                        System.out.println("\nEmail da seguradora");
-                        String email = scanner.nextLine();
-                        if (!Validacao.validarEmail(email)) {
-                                System.out.println("Erro: Endereço de email inválido");
-                        }
+                System.out.println("\nEmail da seguradora");
+                String email = scanner.nextLine();
+                if (!Validacao.validarEmail(email)) {
+                        System.out.println("\nErro: Endereço de email inválido");
+                }
 
-                        System.out.println("\nEndereço da seguradora");
-                        String endereco = scanner.nextLine();
-                        if (endereco.isBlank()) {
-                                System.out.println("Erro: Endereço inválido");
-                        }
+                System.out.println("\nEndereço da seguradora");
+                String endereco = scanner.nextLine();
+                if (endereco.isBlank()) {
+                        System.out.println("\nErro: Endereço inválido");
+                }
 
-                        Seguradora seguradora = new Seguradora(nomeSeguradora, telefone, email, endereco,
-                                        new ArrayList<Sinistro>(), new ArrayList<Cliente>());
+                Seguradora seguradora = new Seguradora(nomeSeguradora, telefone, email, endereco,
+                                new ArrayList<Sinistro>(), new ArrayList<Cliente>());
                                 
-                        System.out.println("\nSeguradora " + seguradora.getNome() + " cadastrada com sucesso!!!");
+                System.out.println("\nSeguradora " + seguradora.getNome() + " cadastrada com sucesso!!!");
 
-                        return seguradora;
+                return seguradora;
         }
+
+        private static void cadastrarClientePF(Scanner scanner, List<Seguradora> seguradoras) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+                System.out.println("Nome da seguradora: ");
+                String nomeSeguradora = scanner.nextLine();
+
+                if (nomeSeguradora.isBlank()) {
+                        System.out.println("\nErro: Nome da seguradora inválido");
+                        return;
+                }
+
+                for (Seguradora seguradora : seguradoras) {
+                        if (seguradora.getNome().equals(nomeSeguradora)) {
+                                System.out.println("\nNome do cliente: ");
+                                String nomeCliente = scanner.nextLine();
+                                if (nomeCliente.isBlank()) {
+                                        System.out.println("\nErro: Nome inválido");
+                                        return;
+                                }
+
+                                System.out.println("\nEndereço do cliente");
+                                String endereco = scanner.nextLine();
+                                if (endereco.isBlank()) {
+                                        System.out.println("\nErro: Endereço inválido");
+                                        return;
+                                }
+
+                                System.out.println("\nCPF do cliente: ");
+                                String cpf = scanner.nextLine();
+                                if (!Validacao.validarCPF(cpf)) {
+                                        System.out.println("\nErro: CPF inválido");
+                                        return;
+                                }
+
+                                System.out.println("\nGênero do cliente: ");
+                                String genero = scanner.nextLine();
+
+                                System.out.println("\nData de licença do cliente (DD/MM/AAAA): ");
+                                String dataLicencaString = scanner.nextLine();
+                                Date dataLicenca;
+                                try {
+                                        dataLicenca = dateFormat.parse(dataLicencaString);
+                                } catch (ParseException e) {
+                                        System.out.println("Erro: Data inválida");
+                                        return;
+                                }
+
+                                System.out.println("\nNível de educação do cliente: ");
+                                String nivelEducacao = scanner.nextLine();
+
+                                System.out.println("\nData de nascimento do cliente (DD/MM/AAAA): ");
+                                String dataNascimentoString = scanner.nextLine();
+                                Date dataNascimento;
+                                try {
+                                        dataNascimento = dateFormat.parse(dataNascimentoString);
+                                } catch (ParseException e) {
+                                        System.out.println("\nErro: Data inválida");
+                                        return;
+                                }
+
+                                System.out.println("\nClasse econômica do cliente: ");
+                                String classeEconomica = scanner.nextLine();
+
+                                Cliente cliente = new ClientePF(nomeCliente, endereco, null, cpf, genero, dataLicenca, nivelEducacao, dataNascimento, classeEconomica);
+                                seguradora.cadastrarCliente(cliente);
+                        }
+
+                        return;
+                }
+        }
+
+        private static void cadastrarClientePJ(Scanner scanner, List<Seguradora> seguradoras) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+                System.out.println("Nome da seguradora: ");
+                String nomeSeguradora = scanner.nextLine();
+
+                if (nomeSeguradora.isBlank()) {
+                        System.out.println("\nErro: Nome da seguradora inválido");
+                        return;
+                }
+
+                for (Seguradora seguradora : seguradoras) {
+                        if (seguradora.getNome().equals(nomeSeguradora)) {
+                                System.out.println("\nNome do cliente: ");
+                                String nomeCliente = scanner.nextLine();
+                                if (nomeCliente.isBlank()) {
+                                        System.out.println("\nErro: Nome inválido");
+                                        return;
+                                }
+
+                                System.out.println("\nEndereço do cliente");
+                                String endereco = scanner.nextLine();
+                                if (endereco.isBlank()) {
+                                        System.out.println("\nErro: Endereço inválido");
+                                        return;
+                                }
+
+                                System.out.println("CNPJ do cliente: ");
+                                String cnpj = scanner.nextLine();
+                                if (!Validacao.validarCNPJ(cnpj)) {
+                                        System.out.println("\nErro: CNPJ inválido");
+                                        return;
+                                }
+
+                                System.out.println("\nData de fundação da empresa (DD/MM/AAAA): ");
+                                String dataFundacaoString = scanner.nextLine();
+                                Date dataFundacao;
+                                try {
+                                        dataFundacao = dateFormat.parse(dataFundacaoString);
+                                } catch (ParseException e) {
+                                        System.out.println("\nErro: Data inválida");
+                                        return;
+                                }
+
+                                System.out.println("\nQuantidade de funcionários: ");
+                                String qtdeFuncionariosString = scanner.nextLine();
+                                Integer qtdeFuncionarios = Integer.valueOf(qtdeFuncionariosString);
+
+                                Cliente cliente = new ClientePJ(nomeCliente, endereco, null, cnpj, dataFundacao, qtdeFuncionarios);
+                                seguradora.cadastrarCliente(cliente);
+                        }
+                }
+        }
+
 }
