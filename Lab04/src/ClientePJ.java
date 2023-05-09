@@ -62,7 +62,6 @@ public class ClientePJ extends Cliente {
     // - Retorna: valor do seguro calculado
     public double calculaScore() { 
         double score = (CalcSeguro.VALOR_BASE.value * (1 + ( this.qtdeFuncionarios ) /100) * this.getListaVeiculos().size());
-        this.setValorSeguro(score);
         return score;
     }
 

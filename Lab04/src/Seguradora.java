@@ -224,4 +224,17 @@ public class Seguradora {
 
         System.out.println("\nErro ao buscar sinistro: Nenhum sinistro relacionado ao cliente com documento " + cliente + " foi encontrado.");
     }
+
+    public void calcularPrecoSeguroCliente() {
+        for (Cliente cliente : this.getListaClientes()) {
+            int qtdeSinistro = 0;
+            for (Sinistro sinistro : this.listaSinistros) {
+                if (cliente.equals(sinistro.getCliente())) {
+                    qtdeSinistro += 1;
+                }
+            }
+            double valorSeguro = cliente.calculaScore() * (1 + qtdeSinistro);
+            cliente.setValorSeguro(valorSeguro);
+        }
+    }
 }

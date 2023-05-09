@@ -86,6 +86,7 @@ public class ClientePF extends Cliente {
         String descricao = "";
         descricao += "Nome: " + getNome() + " | ";
         descricao += "CPF: " + getCpf() + " | ";
+        descricao += "Valor do seguro: " + getValorSeguro() + " | ";
         descricao += "Gênero: " + getGenero() + " | ";
         descricao += "Data de nascimento: " + dataNascimentoFormadata + " | ";
         descricao += "Endereço: " + getEndereco() + " | ";
@@ -119,7 +120,6 @@ public class ClientePF extends Cliente {
         }
  
         double score = (CalcSeguro.VALOR_BASE.value * fatorIdade * this.getListaVeiculos().size());
-        this.setValorSeguro(score);
         return score;
     }
 

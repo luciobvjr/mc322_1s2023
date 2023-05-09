@@ -26,10 +26,10 @@ public class Main {
 
         // Instanciação de Clientes PF
         Calendar calendar = new GregorianCalendar();
-        calendar.set(2021, 3, 15);
+        calendar.set(2000, 3, 15);
         Date dataLicenca = calendar.getTime();
 
-        calendar.set(1991, 2, 27);
+        calendar.set(2000, 2, 27);
         Date dataNascimento = calendar.getTime();
 
         ClientePF clienteFisico1 = new ClientePF(
@@ -139,6 +139,8 @@ public class Main {
 
         // Geração de sinistro
         seguradora.gerarSinistro(sinistro.getData(), sinistro.getEndereco(), sinistro.getVeiculo(), sinistro.getCliente());
+
+        seguradora.calcularPrecoSeguroCliente();
 
         // Print toString() de cada classe
         System.out.println("---------- Chamada toString de cada classe:");
