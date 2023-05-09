@@ -196,8 +196,8 @@ public class Seguradora {
     // Printa sinistro relativo a um cliente"
     // - Entrada: String "cliente" representando o documento de um cliente
     public void visualizarSinistro(String cliente) {
-        boolean clientePessoaFisica = ClientePF.validarCPF(cliente);
-        boolean clientePessoaJuridica = ClientePJ.validarCNPJ(cliente);
+        boolean clientePessoaFisica = Validacao.validarCPF(cliente);
+        boolean clientePessoaJuridica = Validacao.validarCNPJ(cliente);
 
         if (!clientePessoaFisica && !clientePessoaJuridica) {
             System.out.println("\nErro ao buscar sinistro: Documento do cliente inválido: " + cliente);

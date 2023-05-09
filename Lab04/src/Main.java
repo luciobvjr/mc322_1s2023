@@ -122,13 +122,13 @@ public class Main {
 
         // Cadastro de clientes na seguradora
         for (ClientePF clientePF : listaClientesPF) {
-                if (ClientePF.validarCPF(clientePF.getCpf())) {
+                if (Validacao.validarCPF(clientePF.getCpf())) {
                         seguradora.cadastrarCliente(clientePF);
                 }
         }
 
         for (ClientePJ clientePJ : listaClientesPJ) {
-                if (ClientePJ.validarCNPJ(clientePJ.getCnpj())) {
+                if (Validacao.validarCNPJ(clientePJ.getCnpj())) {
                         seguradora.cadastrarCliente(clientePJ);
                 }
         }
