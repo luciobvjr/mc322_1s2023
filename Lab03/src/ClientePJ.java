@@ -6,14 +6,12 @@ import java.util.List;
 public class ClientePJ extends Cliente {
     private final String cnpj;
     private Date dataFundacao;
-    private int qtdeFuncionarios;
 
     // CONSTRUTOR
-    public ClientePJ(String nome, String endereco, List<Veiculo> listaVeiculos, String cnpj, Date dataFundacao, int qtdeFuncionarios) {
+    public ClientePJ(String nome, String endereco, List<Veiculo> listaVeiculos, String cnpj, Date dataFundacao) {
         super(nome, endereco, listaVeiculos);
         this.cnpj = cnpj;
         this.dataFundacao = dataFundacao;
-        this.qtdeFuncionarios = qtdeFuncionarios;
     }
 
     // GETTERS
@@ -25,17 +23,9 @@ public class ClientePJ extends Cliente {
         return dataFundacao;
     }
 
-    public int getQtdeFuncionarios() {
-        return qtdeFuncionarios;
-    }
-
     // SETTERS
     public void setDataFundacao(Date dataFundacao) {
         this.dataFundacao = dataFundacao;
-    }
-
-    public void setQtdeFuncionarios(int qtdeFuncionarios) {
-        this.qtdeFuncionarios = qtdeFuncionarios;
     }
 
     // MÉTODOS PÚBLICOS
@@ -56,14 +46,6 @@ public class ClientePJ extends Cliente {
         descricao += "Endereço: " + getEndereco() + " | ";
         descricao += "Lista de veículos: " + placasVeiculosFormatada;
         return descricao;
-    }
-
-        // Calcula o valor do seguro do cliente PF 
-    // - Retorna: valor do seguro calculado
-    public double calculaScore() { 
-        double score = (CalcSeguro.VALOR_BASE.value * (1 + ( this.qtdeFuncionarios ) /100) * this.getListaVeiculos().size());
-        this.setValorSeguro(score);
-        return score;
     }
 
     // Verifica se o CNPJ é válido (Tem 14 dígitos que não são todos iguais e os dígitos verificadores são válidos).

@@ -1,5 +1,4 @@
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -25,7 +24,7 @@ public class Main {
         listaVeiculos.add(motoVeiculo);
 
         // Instanciação de Clientes PF
-        Calendar calendar = new GregorianCalendar();
+        Calendar calendar = Calendar.getInstance();
         calendar.set(2021, 3, 15);
         Date dataLicenca = calendar.getTime();
 
@@ -79,24 +78,21 @@ public class Main {
                 "Rua Zeferino Vaz, 321",
                 listaVeiculos,
                 "04.490.765/0001-08",
-                dataFundacao,
-                5000);
+                dataFundacao);
 
         ClientePJ clienteJuridico2 = new ClientePJ(
                 "Consultório da Zezé",
                 "Rua da Zezé, 321",
                 listaVeiculos,
                 "75.907.387/0001-63",
-                dataFundacao,
-                20);
+                dataFundacao);
 
         ClientePJ clienteJuridico3 = new ClientePJ(
                 "Empresa teste",
                 "Rua da empresa, 321",
                 listaVeiculos,
                 "65.496.143/0001-81",
-                dataFundacao,
-                30);
+                dataFundacao);
 
         List<ClientePJ> listaClientesPJ = new ArrayList<ClientePJ>();
         listaClientesPJ.add(clienteJuridico1);
@@ -114,7 +110,7 @@ public class Main {
 
         // Instanciação de Sinistro
         Sinistro sinistro = new Sinistro(
-                new Date(),
+                "27/03/2000",
                 "Rua do Sinistro, 123",
                 seguradora,
                 motoVeiculo,
@@ -154,13 +150,7 @@ public class Main {
         seguradora.visualizarSinistro(clienteFisico1.getCpf());
 
         // Método para visualizar dados de seguradora a partir de entrada
-        // menu(seguradora);
-
-        clienteFisico1.calculaScore();
-        System.out.println(clienteFisico1.getValorSeguro());
-
-        clienteJuridico1.calculaScore();
-        System.out.println(clienteJuridico1.getValorSeguro());
+        menu(seguradora);
     }
 
     public static void menu(Seguradora seguradora) {
