@@ -162,6 +162,8 @@ public class Main {
                 System.out.println(cliente.getValorSeguro());
         }
         System.out.println(seguradora.calcularReceita());
+
+        System.out.println(Validacao.validarNomePF("Arroz    doce"));
     }
 
     public static void menu(Seguradora seguradora) {

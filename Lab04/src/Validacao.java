@@ -17,6 +17,19 @@ public class Validacao {
         return cnpjTemQuatorzeDigitos(numericCnpj) && !docTemTodosDigitosIguais(numericCnpj) && digitoVerificadorValidoCNPJ(numericCnpj);
     }
 
+    // Verifica se o nome é válido (Tem apenas letras e espaços).
+    // - Entrada: String representando um nome
+    // - Retorna: 'true' o nome é válido e 'false' caso contrário
+    static public boolean validarNomePF(String nome) {
+        char[] charArray = nome.toCharArray();
+        for (char ch : charArray) {
+            if (!Character.isLetter(ch) && !Character.isSpaceChar(ch)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     // MÉTODOS PRIVADOS
 
     // Verifica se o CPF tem exatamente 11 dígitos.
