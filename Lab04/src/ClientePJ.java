@@ -41,7 +41,7 @@ public class ClientePJ extends Cliente {
     // MÉTODOS PÚBLICOS
     @Override
     public String toString() {
-        String dataFundacaoFormadata = new SimpleDateFormat("dd-MM-yyyy").format(getDataFundacao());
+        String dataFundacaoFormadata = new SimpleDateFormat("dd/MM/yyyy").format(getDataFundacao());
         
         List<String> placasVeiculos = new ArrayList<String>();
         for (Veiculo veiculo : getListaVeiculos()) {

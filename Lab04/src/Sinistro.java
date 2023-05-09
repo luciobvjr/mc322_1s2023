@@ -72,7 +72,7 @@ public class Sinistro {
     // MÉTODOS PÚBLICOS
     @Override
     public String toString() {
-        String dataSinistroFormatada = new SimpleDateFormat("dd-MM-yyyy").format(getData());
+        String dataSinistroFormatada = new SimpleDateFormat("dd/MM/yyyy").format(getData());
 
         String descricao = "";
         descricao += "Id: " + id + " | ";

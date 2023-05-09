@@ -74,8 +74,8 @@ public class ClientePF extends Cliente {
     // MÉTODOS PÚBLICOS
     @Override
     public String toString() {
-        String dataNascimentoFormadata = new SimpleDateFormat("dd-MM-yyyy").format(getDataNascimento());
-        String dataLicencaFormatada = new SimpleDateFormat("dd-MM-yyyy").format(getDataLicenca());
+        String dataNascimentoFormadata = new SimpleDateFormat("dd/MM/yyyy").format(getDataNascimento());
+        String dataLicencaFormatada = new SimpleDateFormat("dd/MM/yyyy").format(getDataLicenca());
 
         List<String> placasVeiculos = new ArrayList<String>();
         for (Veiculo veiculo : getListaVeiculos()) {
