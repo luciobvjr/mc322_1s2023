@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -24,7 +25,7 @@ public class Main {
         listaVeiculos.add(motoVeiculo);
 
         // Instanciação de Clientes PF
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = new GregorianCalendar();
         calendar.set(2021, 3, 15);
         Date dataLicenca = calendar.getTime();
 
@@ -150,7 +151,9 @@ public class Main {
         seguradora.visualizarSinistro(clienteFisico1.getCpf());
 
         // Método para visualizar dados de seguradora a partir de entrada
-        menu(seguradora);
+        // menu(seguradora);
+        clienteFisico1.calculaScore();
+        System.out.println(clienteFisico1.getValorSeguro());
     }
 
     public static void menu(Seguradora seguradora) {

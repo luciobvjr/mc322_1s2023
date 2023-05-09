@@ -1,6 +1,8 @@
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class ClientePF extends Cliente {
@@ -92,6 +94,33 @@ public class ClientePF extends Cliente {
         descricao += "Educação: " + getEducacao() + " | ";
         descricao += "Classe econômica: " + getClasseEconomica();
         return descricao;
+    }
+
+    // Calcula o valor do seguro do cliente PF 
+    // - Retorna: valor do seguro calculado
+    public double calculaScore() { 
+        Calendar calendar = new GregorianCalendar();
+        int currentYear = calendar.get(Calendar.YEAR);
+
+        calendar.setTime(dataNascimento);
+        int birthYear = calendar.get(Calendar.YEAR);
+
+        int idade = currentYear - birthYear;
+        double fatorIdade = 1;
+        
+        if (idade >= 18 && idade < 30) {
+            fatorIdade = CalcSeguro.FATOR_18_30.value;
+        } else if (idade >= 30 && idade < 60) {
+            fatorIdade = CalcSeguro.FATOR_30_60.value;
+        } else if (idade >= 60 && idade < 90) {
+            fatorIdade = CalcSeguro.FATOR_60_90.value;
+        } else {
+            return (-1);
+        }
+ 
+        double score = (CalcSeguro.VALOR_BASE.value * fatorIdade * this.getListaVeiculos().size());
+        this.setValorSeguro(score);
+        return score;
     }
 
     // Verifica se o CPF é válido (Tem 11 dígitos que não são todos iguais e os dígitos verificadores são válidos).
