@@ -1,4 +1,5 @@
 package Menu;
+
 public enum MenuCadastro {
     VOLTAR(0),
     CADASTRAR_CLIENTE_PF(1),
@@ -6,9 +7,9 @@ public enum MenuCadastro {
     CADASTRAR_VEICULO(3),
     CADASTRAR_SEGURADORA(4);
 
-    public final Integer operacao;
+    public final String operacao;
 
     private MenuCadastro(Integer operacao) {
-        this.operacao = operacao;
+        this.operacao = operacao.toString();
     }
 }

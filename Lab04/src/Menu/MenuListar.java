@@ -1,4 +1,5 @@
 package Menu;
+
 public enum MenuListar {
     VOLTAR(0),
     LISTAR_CLIENTES_GERAL(1),
@@ -6,9 +7,9 @@ public enum MenuListar {
     LISTAR_CLIENTES_PJ(3),
     LISTAR_SINISTROS(4);
 
-    public final Integer operacao;
+    public final String operacao;
 
     private MenuListar(Integer operacao) {
-        this.operacao = operacao;
+        this.operacao = operacao.toString();
     }
 }

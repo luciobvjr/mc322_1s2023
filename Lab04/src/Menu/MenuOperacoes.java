@@ -1,4 +1,5 @@
 package Menu;
+
 public enum MenuOperacoes {
     SAIR(0),
     CADASTRAR(1),
@@ -8,9 +9,9 @@ public enum MenuOperacoes {
     TRANSFERIR_SEGURO(5),
     CALCULAR_RECEITA(6);
 
-    public final Integer operacao;
+    public final String operacao;
 
     private MenuOperacoes(Integer operacao) {
-        this.operacao = operacao;
+        this.operacao = operacao.toString();
     }
 }

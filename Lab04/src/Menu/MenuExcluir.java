@@ -6,9 +6,9 @@ public enum MenuExcluir {
     EXCLUIR_VEICULO(1),
     EXCLUIR_SINISTRO(2);
 
-    public final Integer operacao;
+    public final String operacao;
 
     private MenuExcluir(Integer operacao) {
-        this.operacao = operacao;
+        this.operacao = operacao.toString();
     }
 }
