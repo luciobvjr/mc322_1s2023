@@ -158,13 +158,10 @@ public class Main {
         // Método para visualizar dados de seguradora a partir de entrada
         // menu(seguradora);
 
-        clienteFisico1.calculaScore();
-        System.out.println(clienteFisico1.getValorSeguro());
-
-        clienteJuridico1.calculaScore();
-        System.out.println(clienteJuridico1.getValorSeguro());
-
-        System.out.println(sinistro);
+        for (Cliente cliente : seguradora.getListaClientes()) {
+                System.out.println(cliente.getValorSeguro());
+        }
+        System.out.println(seguradora.calcularReceita());
     }
 
     public static void menu(Seguradora seguradora) {

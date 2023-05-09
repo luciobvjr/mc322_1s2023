@@ -237,4 +237,14 @@ public class Seguradora {
             cliente.setValorSeguro(valorSeguro);
         }
     }
+
+    public double calcularReceita() {
+        double receita = 0;
+
+        for (Cliente cliente : this.getListaClientes()) {
+            receita += cliente.getValorSeguro();
+        }
+
+        return receita;
+    }
 }
