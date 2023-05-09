@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -175,7 +176,7 @@ public class Seguradora {
     //            veiculo - Veiculo da ocorrência do sinistro
     //            cliente - Cliente relacionado ao sinistro
     // - Retorna: 'true' se o sinistro foi adicionado com sucesso e 'false' caso contrário
-    public boolean gerarSinistro(String data, String endereco, Veiculo veiculo, Cliente cliente) {
+    public boolean gerarSinistro(Date data, String endereco, Veiculo veiculo, Cliente cliente) {
         Sinistro sinistro = new Sinistro(data, endereco, this, veiculo, cliente);
         return this.listaSinistros.add(sinistro);
     }

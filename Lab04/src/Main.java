@@ -114,7 +114,7 @@ public class Main {
 
         // Instanciação de Sinistro
         Sinistro sinistro = new Sinistro(
-                "27/03/2000",
+                new Date(),
                 "Rua do Sinistro, 123",
                 seguradora,
                 motoVeiculo,
@@ -161,6 +161,8 @@ public class Main {
 
         clienteJuridico1.calculaScore();
         System.out.println(clienteJuridico1.getValorSeguro());
+
+        System.out.println(sinistro);
     }
 
     public static void menu(Seguradora seguradora) {
