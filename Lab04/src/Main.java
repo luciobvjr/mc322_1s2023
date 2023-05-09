@@ -119,6 +119,13 @@ public class Main {
                 motoVeiculo,
                 clienteFisico1);
 
+        Sinistro sinistro2 = new Sinistro(
+                new Date(),
+                "Rua do Jambolão, 123",
+                seguradora,
+                fuscaVeiculo,
+                clienteJuridico1);
+
         // Cadastro de clientes na seguradora
         for (ClientePF clientePF : listaClientesPF) {
                 if (Validacao.validarCPF(clientePF.getCpf())) {
@@ -138,8 +145,7 @@ public class Main {
 
         // Geração de sinistro
         seguradora.gerarSinistro(sinistro.getData(), sinistro.getEndereco(), sinistro.getVeiculo(), sinistro.getCliente());
-
-        seguradora.calcularPrecoSeguroCliente();
+        seguradora.gerarSinistro(sinistro2.getData(), sinistro2.getEndereco(), sinistro2.getVeiculo(), sinistro2.getCliente());
 
         // Print toString() de cada classe
         System.out.println("---------- Chamada toString de cada classe:");
@@ -149,10 +155,12 @@ public class Main {
         System.out.println(sinistro.toString() + "\n");
         System.out.println(fuscaVeiculo.toString() + "\n");
 
-        // Chamada de métodos da seguradora (listarClientes, listarSinistros e visualizarSinistro)
+        // Chamada de métodos da seguradora
         seguradora.listarClientes("GERAL");
         seguradora.listarSinistros();
         seguradora.visualizarSinistro(clienteFisico1.getCpf());
+        seguradora.calcularPrecoSeguroCliente();
+        System.out.println("Receita total da Seguradora TOP: " + seguradora.calcularReceita() + "\n");
 
         // Método para visualizar dados de seguradora a partir de entrada
         List<Seguradora> seguradoras = new ArrayList<>();
