@@ -1,15 +1,16 @@
+import java.util.Date;
 import java.util.Random;
 
 public class Sinistro {
     private Integer id;
-    private String data;
+    private Date data;
     private String endereco;
     private Seguradora seguradora;
     private Veiculo veiculo;
     private Cliente cliente;
 
     // CONSTRUCTOR
-    public Sinistro(String data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
+    public Sinistro(Date data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
         this.id = getRandomID();
         this.data = data;
         this.endereco = endereco;
@@ -23,7 +24,7 @@ public class Sinistro {
         return this.id;
     }
 
-    public String getData() {
+    public Date getData() {
         return this.data;
     }
 
@@ -47,7 +48,7 @@ public class Sinistro {
         this.id = id;
     }
 
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
 

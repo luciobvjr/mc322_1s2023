@@ -114,7 +114,7 @@ public class Main {
 
         // Instanciação de Sinistro
         Sinistro sinistro = new Sinistro(
-                "27/03/2000",
+                new Date(),
                 "Rua do Sinistro, 123",
                 seguradora,
                 motoVeiculo,
