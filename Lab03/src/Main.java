@@ -79,21 +79,24 @@ public class Main {
                 "Rua Zeferino Vaz, 321",
                 listaVeiculos,
                 "04.490.765/0001-08",
-                dataFundacao);
+                dataFundacao,
+                5000);
 
         ClientePJ clienteJuridico2 = new ClientePJ(
                 "Consultório da Zezé",
                 "Rua da Zezé, 321",
                 listaVeiculos,
                 "75.907.387/0001-63",
-                dataFundacao);
+                dataFundacao,
+                20);
 
         ClientePJ clienteJuridico3 = new ClientePJ(
                 "Empresa teste",
                 "Rua da empresa, 321",
                 listaVeiculos,
                 "65.496.143/0001-81",
-                dataFundacao);
+                dataFundacao,
+                30);
 
         List<ClientePJ> listaClientesPJ = new ArrayList<ClientePJ>();
         listaClientesPJ.add(clienteJuridico1);
@@ -152,8 +155,12 @@ public class Main {
 
         // Método para visualizar dados de seguradora a partir de entrada
         // menu(seguradora);
+
         clienteFisico1.calculaScore();
         System.out.println(clienteFisico1.getValorSeguro());
+
+        clienteJuridico1.calculaScore();
+        System.out.println(clienteJuridico1.getValorSeguro());
     }
 
     public static void menu(Seguradora seguradora) {
