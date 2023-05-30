@@ -84,30 +84,30 @@ public class Main {
                                 "Rua Zeferino Vaz, 321",
                                 "19912345678",
                                 "unicamp@sorvetes.com",
-                                listaVeiculos,
                                 "04.490.765/0001-08",
                                 dataFundacao,
-                                5000);
+                                5000, 
+                                new ArrayList<Frota>());
 
                 ClientePJ clienteJuridico2 = new ClientePJ(
                                 "Consultório da Zezé",
                                 "Rua da Zezé, 321",
                                 "19912345678",
                                 "consultorio@zeze.com",
-                                listaVeiculos,
                                 "75.907.387/0001-63",
                                 dataFundacao,
-                                20);
+                                20, 
+                                new ArrayList<Frota>());
 
                 ClientePJ clienteJuridico3 = new ClientePJ(
                                 "Empresa teste",
                                 "Rua da empresa, 321",
                                 "19912345678",
                                 "empresa@teste.com",
-                                listaVeiculos,
                                 "65.496.143/0001-81",
                                 dataFundacao,
-                                30);
+                                30, 
+                                new ArrayList<Frota>());
 
                 List<ClientePJ> listaClientesPJ = new ArrayList<ClientePJ>();
                 listaClientesPJ.add(clienteJuridico1);

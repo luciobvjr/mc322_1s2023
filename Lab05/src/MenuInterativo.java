@@ -243,7 +243,8 @@ public class MenuInterativo {
                 System.out.println("\nClasse econômica do cliente: ");
                 String classeEconomica = scanner.nextLine();
 
-                Cliente cliente = new ClientePF(nomeCliente, endereco, telefone, email, new ArrayList<Veiculo>(), cpf, genero, dataLicenca,
+                Cliente cliente = new ClientePF(nomeCliente, endereco, telefone, email, new ArrayList<Veiculo>(), cpf,
+                                genero, dataLicenca,
                                 nivelEducacao, dataNascimento, classeEconomica);
                 seguradora.cadastrarCliente(cliente);
 
@@ -302,8 +303,8 @@ public class MenuInterativo {
                 String qtdeFuncionariosString = scanner.nextLine();
                 Integer qtdeFuncionarios = Integer.valueOf(qtdeFuncionariosString);
 
-                Cliente cliente = new ClientePJ(nomeCliente, endereco, email, telefone, new ArrayList<Veiculo>(), cnpj,
-                                dataFundacao, qtdeFuncionarios);
+                Cliente cliente = new ClientePJ(nomeCliente, endereco, email, telefone, cnpj,
+                                dataFundacao, qtdeFuncionarios, new ArrayList<Frota>());
                 seguradora.cadastrarCliente(cliente);
         }
 
@@ -354,6 +355,7 @@ public class MenuInterativo {
                 Veiculo veiculo = new Veiculo(placa, marca, modelo, anoFabricacao);
                 clientePF.cadastrarVeiculo(veiculo);
 
-                System.out.println("\nVeículo " + veiculo.getPlaca() + " cadastrada com sucesso para o cliente " + clientePF.getNome() + " !!!");
+                System.out.println("\nVeículo " + veiculo.getPlaca() + " cadastrada com sucesso para o cliente "
+                                + clientePF.getNome() + " !!!");
         }
 }
