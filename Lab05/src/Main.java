@@ -19,7 +19,7 @@ public class Main {
                 "MT-09",
                 2023);
 
-        List<Veiculo> listaVeiculos = new ArrayList<Veiculo>();
+        ArrayList<Veiculo> listaVeiculos = new ArrayList<Veiculo>();
         listaVeiculos.add(fuscaVeiculo);
         listaVeiculos.add(motoVeiculo);
 
@@ -145,6 +145,9 @@ public class Main {
                 }
         }
 
+        // Instanciação de Frota
+        Frota frota = new Frota("1", listaVeiculos);
+
         // Remoção de clientes na seguradora
         seguradora.removerCliente(clienteFisico3.getCpf());
         seguradora.removerCliente(clienteJuridico3.getCnpj());
@@ -160,6 +163,7 @@ public class Main {
         System.out.println(seguradora.toString() + "\n");
         System.out.println(sinistro.toString() + "\n");
         System.out.println(fuscaVeiculo.toString() + "\n");
+        System.out.println(frota.toString() + "\n");
 
         // Chamada de métodos da seguradora
         seguradora.listarClientes("GERAL");
