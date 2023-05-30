@@ -6,8 +6,8 @@ public class SeguroPJ extends Seguro {
     ClientePJ cliente;
 
     // CONSTRUTOR
-    public SeguroPJ(Date dataInicio, Date dataFim, Seguradora seguradora, ArrayList<Sinistro> listaSinistros, 
-                    ArrayList<Condutor> listaCondutores, Double valorMensal, Frota frota, ClientePJ cliente) {
+    public SeguroPJ(Date dataInicio, Date dataFim, Seguradora seguradora, ArrayList<Sinistro> listaSinistros,
+            ArrayList<Condutor> listaCondutores, Double valorMensal, Frota frota, ClientePJ cliente) {
         super(dataInicio, dataFim, seguradora, listaSinistros, listaCondutores, valorMensal);
         this.frota = frota;
         this.cliente = cliente;
@@ -26,7 +26,7 @@ public class SeguroPJ extends Seguro {
     public void setFrota(Frota frota) {
         this.frota = frota;
     }
-    
+
     public void setCliente(ClientePJ cliente) {
         this.cliente = cliente;
     }
@@ -50,10 +50,15 @@ public class SeguroPJ extends Seguro {
             sinistrosCondutores += condutor.getListaSinistros().size();
         }
 
+        Integer numeroVeiculos = 0;
+        for (Frota frota : cliente.getListaFrotas()) {
+            numeroVeiculos += frota.listaVeiculos.size();
+        }
+
         Double valor = CalcSeguro.VALOR_BASE.value;
         valor *= (10 + cliente.getQtdeFuncionarios() / 10);
-        // TODO: BASEADO NA QUANTIDADE DE VEÍCULOS
-        valor *= (1 + 1/(idade + 2));
+        valor *= (1 + (1 / (numeroVeiculos + 2)));
+        valor *= (1 + 1 / (idade + 2));
         valor *= (2 + (getListaSinistros().size() / 10));
         valor *= (5 + (sinistrosCondutores / 10));
         return false;
