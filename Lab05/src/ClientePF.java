@@ -12,17 +12,19 @@ public class ClientePF extends Cliente {
     private String educacao;
     private Date dataNascimento;
     private String classeEconomica;
+    private ArrayList<Veiculo> listaVeiculos;
 
     // CONSTRUTOR
-    public ClientePF(String nome, String endereco, String telefone, List<Veiculo> listaVeiculos, String cpf, String genero, 
+    public ClientePF(String nome, String endereco, String telefone, String email, ArrayList<Veiculo> listaVeiculos, String cpf, String genero, 
                      Date dataLicenca, String educacao, Date dataNascimento, String classeEconomica) {
-        super(nome, endereco, telefone, listaVeiculos);
+        super(nome, endereco, telefone, email);
         this.cpf = cpf;
         this.genero = genero;
         this.dataLicenca = dataLicenca;
         this.educacao = educacao;
         this.dataNascimento = dataNascimento;
         this.classeEconomica = classeEconomica;
+        this.listaVeiculos = listaVeiculos;
     }
 
     // GETTERS
@@ -50,6 +52,10 @@ public class ClientePF extends Cliente {
         return classeEconomica;
     }
 
+    public ArrayList<Veiculo> getListaVeiculos() {
+        return listaVeiculos;
+    }
+
     // SETTERS
     public void setGenero(String genero) {
         this.genero = genero;
@@ -71,6 +77,10 @@ public class ClientePF extends Cliente {
         this.classeEconomica = classeEconomica;
     }
     
+    public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
+        this.listaVeiculos = listaVeiculos;
+    }
+
     // MÉTODOS PÚBLICOS
     @Override
     public String toString() {
@@ -86,11 +96,11 @@ public class ClientePF extends Cliente {
         String descricao = "";
         descricao += "Nome: " + getNome() + " | ";
         descricao += "CPF: " + getCpf() + " | ";
-        descricao += "Valor do seguro: " + getValorSeguro() + " | ";
         descricao += "Gênero: " + getGenero() + " | ";
         descricao += "Data de nascimento: " + dataNascimentoFormadata + " | ";
         descricao += "Endereço: " + getEndereco() + " | ";
         descricao += "Telefone: " + getTelefone() + " | ";
+        descricao += "Email: " + getEmail() + " | ";
         descricao += "Lista de veículos: " + placasVeiculosFormatada + " | ";
         descricao += "Data de licença: " + dataLicencaFormatada + " | ";
         descricao += "Educação: " + getEducacao() + " | ";

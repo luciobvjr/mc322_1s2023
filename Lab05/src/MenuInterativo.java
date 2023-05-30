@@ -2,7 +2,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 import Menu.MenuCadastro;
@@ -201,6 +200,13 @@ public class MenuInterativo {
                         return;
                 }
 
+                System.out.println("\nEmail do cliente");
+                String email = scanner.nextLine();
+                if (!Validacao.validarEmail(email)) {
+                        System.out.println("\nErro: Email inválido");
+                        return;
+                }
+
                 System.out.println("\nCPF do cliente: ");
                 String cpf = scanner.nextLine();
                 if (!Validacao.validarCPF(cpf)) {
@@ -237,7 +243,7 @@ public class MenuInterativo {
                 System.out.println("\nClasse econômica do cliente: ");
                 String classeEconomica = scanner.nextLine();
 
-                Cliente cliente = new ClientePF(nomeCliente, endereco, telefone, null, cpf, genero, dataLicenca,
+                Cliente cliente = new ClientePF(nomeCliente, endereco, telefone, email, null, cpf, genero, dataLicenca,
                                 nivelEducacao, dataNascimento, classeEconomica);
                 seguradora.cadastrarCliente(cliente);
 
@@ -268,6 +274,13 @@ public class MenuInterativo {
                         return;
                 }
 
+                System.out.println("\nEmail do cliente");
+                String email = scanner.nextLine();
+                if (!Validacao.validarEmail(email)) {
+                        System.out.println("\nErro: Email inválido");
+                        return;
+                }
+
                 System.out.println("CNPJ do cliente: ");
                 String cnpj = scanner.nextLine();
                 if (!Validacao.validarCNPJ(cnpj)) {
@@ -289,7 +302,7 @@ public class MenuInterativo {
                 String qtdeFuncionariosString = scanner.nextLine();
                 Integer qtdeFuncionarios = Integer.valueOf(qtdeFuncionariosString);
 
-                Cliente cliente = new ClientePJ(nomeCliente, endereco, telefone, null, cnpj,
+                Cliente cliente = new ClientePJ(nomeCliente, endereco, email, telefone, null, cnpj,
                                 dataFundacao, qtdeFuncionarios);
                 seguradora.cadastrarCliente(cliente);
         }

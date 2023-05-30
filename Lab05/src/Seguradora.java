@@ -237,29 +237,6 @@ public class Seguradora {
                 + " foi encontrado.");
     }
 
-    public void calcularPrecoSeguroCliente() {
-        for (Cliente cliente : this.getListaClientes()) {
-            int qtdeSinistro = 0;
-            for (Sinistro sinistro : this.listaSinistros) {
-                if (cliente.equals(sinistro.getCliente())) {
-                    qtdeSinistro += 1;
-                }
-            }
-            double valorSeguro = cliente.calculaScore() * (1 + qtdeSinistro);
-            cliente.setValorSeguro(valorSeguro);
-        }
-    }
-
-    public double calcularReceita() {
-        double receita = 0;
-
-        for (Cliente cliente : this.getListaClientes()) {
-            receita += cliente.getValorSeguro();
-        }
-
-        return receita;
-    }
-
     // Método para encontrar um cliente PF na lista de clientes da seguradora
     // - Entrada: CPF do cliente a ser procurado
     // - Retorna: Cliente se for encontrado na lista e 'null' caso contrário

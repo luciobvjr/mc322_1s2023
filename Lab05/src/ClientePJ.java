@@ -9,8 +9,8 @@ public class ClientePJ extends Cliente {
     private int qtdeFuncionarios;
 
     // CONSTRUTOR
-    public ClientePJ(String nome, String endereco, String telefone, List<Veiculo> listaVeiculos, String cnpj, Date dataFundacao, int qtdeFuncionarios) {
-        super(nome, endereco, telefone, listaVeiculos);
+    public ClientePJ(String nome, String endereco, String telefone, String email, List<Veiculo> listaVeiculos, String cnpj, Date dataFundacao, int qtdeFuncionarios) {
+        super(nome, endereco, telefone, email);
         this.cnpj = cnpj;
         this.dataFundacao = dataFundacao;
         this.qtdeFuncionarios = qtdeFuncionarios;
@@ -43,11 +43,13 @@ public class ClientePJ extends Cliente {
     public String toString() {
         String dataFundacaoFormadata = new SimpleDateFormat("dd/MM/yyyy").format(getDataFundacao());
         
+        /* MUDAR P FROTA
         List<String> placasVeiculos = new ArrayList<String>();
         for (Veiculo veiculo : getListaVeiculos()) {
             placasVeiculos.add(veiculo.getPlaca());
         }
         String placasVeiculosFormatada = String.join(", ", placasVeiculos);
+        */
 
         String descricao = "";
         descricao += "Nome: " + getNome() + " | ";
@@ -55,14 +57,7 @@ public class ClientePJ extends Cliente {
         descricao += "Data de Fundação: " + dataFundacaoFormadata + " | ";
         descricao += "Endereço: " + getEndereco() + " | ";
         descricao += "Telefone: " + getTelefone() + " | ";
-        descricao += "Lista de veículos: " + placasVeiculosFormatada;
+        //descricao += "Lista de veículos: " + placasVeiculosFormatada;
         return descricao;
-    }
-
-        // Calcula o valor do seguro do cliente PF 
-    // - Retorna: valor do seguro calculado
-    public double calculaScore() { 
-        double score = (CalcSeguro.VALOR_BASE.value * (1 + ( this.qtdeFuncionarios ) /100) * this.getListaVeiculos().size());
-        return score;
     }
 }

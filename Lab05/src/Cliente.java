@@ -1,18 +1,15 @@
-import java.util.List;
-
 public abstract class Cliente {
     private String nome;
     private String endereco;
     private String telefone;
-    private List<Veiculo> listaVeiculos;
-    private double valorSeguro;
+    private String email;
 
     // CONSTRUTOR
-    public Cliente(String nome, String endereco, String telefone, List<Veiculo> listaVeiculos) {
+    public Cliente(String nome, String endereco, String telefone, String email) {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.listaVeiculos = listaVeiculos;
+        this.email = email;
     }
 
     // GETTERS
@@ -28,12 +25,8 @@ public abstract class Cliente {
         return telefone;
     }
 
-    public List<Veiculo> getListaVeiculos() {
-        return listaVeiculos;
-    }
-
-    public double getValorSeguro() {
-        return valorSeguro;
+    public String getEmail() {
+        return email;
     }
 
     // SETTERS
@@ -49,16 +42,7 @@ public abstract class Cliente {
         this.telefone = telefone;
     }
 
-    public void setListaVeiculos(List<Veiculo> listaVeiculos) {
-        this.listaVeiculos = listaVeiculos;
-    }
-
-    public void setValorSeguro(double valorSeguro) {
-        this.valorSeguro = valorSeguro;
-    }
-
-    public double calculaScore() {
-        this.valorSeguro = CalcSeguro.VALOR_BASE.value;
-        return this.valorSeguro;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
