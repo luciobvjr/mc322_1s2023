@@ -59,7 +59,7 @@ public class SeguroPF extends Seguro {
 
         Double valor = CalcSeguro.VALOR_BASE.value * fatorIdade;
         valor *= (1 + 1 / cliente.getListaVeiculos().size() + 2);
-        valor *= (2 + cliente.getListaSinistros().size() / 10);
+        valor *= (2 + getListaSinistros().size() / 10);
         valor *= (5 + sinistrosCondutores / 10);
 
         this.setValorMensal(valor);

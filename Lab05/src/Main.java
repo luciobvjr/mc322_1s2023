@@ -42,8 +42,7 @@ public class Main {
                                 dataLicenca,
                                 "Ensino médio completo",
                                 dataNascimento,
-                                "Média",
-                                new ArrayList<Sinistro>());
+                                "Média");
 
                 ClientePF clienteFisico2 = new ClientePF(
                                 "Poliana Moça de Azevedo",
@@ -56,8 +55,7 @@ public class Main {
                                 dataLicenca,
                                 "Ensino médio cursando",
                                 dataNascimento,
-                                "Média",
-                                new ArrayList<Sinistro>());
+                                "Média");
 
                 ClientePF clienteFisico3 = new ClientePF(
                                 "Tirulipa de Almeida",
@@ -70,8 +68,7 @@ public class Main {
                                 dataLicenca,
                                 "Doutorando em física nuclear",
                                 dataNascimento,
-                                "Média",
-                                new ArrayList<Sinistro>());
+                                "Média");
 
                 List<ClientePF> listaClientesPF = new ArrayList<ClientePF>();
                 listaClientesPF.add(clienteFisico1);
@@ -90,8 +87,7 @@ public class Main {
                                 listaVeiculos,
                                 "04.490.765/0001-08",
                                 dataFundacao,
-                                5000,
-                                new ArrayList<Sinistro>());
+                                5000);
 
                 ClientePJ clienteJuridico2 = new ClientePJ(
                                 "Consultório da Zezé",
@@ -101,8 +97,7 @@ public class Main {
                                 listaVeiculos,
                                 "75.907.387/0001-63",
                                 dataFundacao,
-                                20,
-                                new ArrayList<Sinistro>());
+                                20);
 
                 ClientePJ clienteJuridico3 = new ClientePJ(
                                 "Empresa teste",
@@ -112,8 +107,7 @@ public class Main {
                                 listaVeiculos,
                                 "65.496.143/0001-81",
                                 dataFundacao,
-                                30,
-                                new ArrayList<Sinistro>());
+                                30);
 
                 List<ClientePJ> listaClientesPJ = new ArrayList<ClientePJ>();
                 listaClientesPJ.add(clienteJuridico1);

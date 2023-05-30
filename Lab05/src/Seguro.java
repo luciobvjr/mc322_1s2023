@@ -78,10 +78,21 @@ public abstract class Seguro {
     }
 
     // MÉTODOS PÚBLICOS
-    //public abstract boolean autorizarCondutor(Condutor condutor);
-    //public abstract boolean desautorizarCondutor(Condutor condutor);
     public abstract boolean calcularValor();
     //public abstract boolean gerarSinistro(Sinistro sinistro);
+
+    public boolean autorizarCondutor(Condutor condutor) {
+        return this.getListaCondutores().add(condutor);
+    }
+
+    public boolean desautorizarCondutor(String cpf) {
+        for (Condutor condutor : getListaCondutores()) {
+            if (condutor.getCpf().equals(cpf)) {
+                return getListaCondutores().remove(condutor);
+            }
+        }
+        return false;
+    }
 
     @Override
     public String toString() {

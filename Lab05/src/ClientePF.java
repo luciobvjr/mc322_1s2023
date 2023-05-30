@@ -16,11 +16,11 @@ public class ClientePF extends Cliente {
     private Date dataNascimento;
     private String classeEconomica;
     private ArrayList<Veiculo> listaVeiculos;
-    private ArrayList<Sinistro> listaSinistros;
 
     // CONSTRUTOR
-    public ClientePF(String nome, String endereco, String telefone, String email, ArrayList<Veiculo> listaVeiculos, String cpf, String genero, 
-                     Date dataLicenca, String educacao, Date dataNascimento, String classeEconomica, ArrayList<Sinistro> listaSinistros) {
+    public ClientePF(String nome, String endereco, String telefone, String email, ArrayList<Veiculo> listaVeiculos,
+            String cpf, String genero,
+            Date dataLicenca, String educacao, Date dataNascimento, String classeEconomica) {
         super(nome, endereco, telefone, email);
         this.cpf = cpf;
         this.genero = genero;
@@ -29,7 +29,6 @@ public class ClientePF extends Cliente {
         this.dataNascimento = dataNascimento;
         this.classeEconomica = classeEconomica;
         this.listaVeiculos = listaVeiculos;
-        this.listaSinistros = listaSinistros;
     }
 
     // GETTERS
@@ -61,10 +60,6 @@ public class ClientePF extends Cliente {
         return listaVeiculos;
     }
 
-    public ArrayList<Sinistro> getListaSinistros() {
-        return listaSinistros;
-    }
-
     // SETTERS
     public void setGenero(String genero) {
         this.genero = genero;
@@ -85,13 +80,9 @@ public class ClientePF extends Cliente {
     public void setClasseEconomica(String classeEconomica) {
         this.classeEconomica = classeEconomica;
     }
-    
+
     public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
         this.listaVeiculos = listaVeiculos;
-    }
-
-    public void setListaSinistros(ArrayList<Sinistro> listaSinistros) {
-        this.listaSinistros = listaSinistros;
     }
 
     // MÉTODOS PÚBLICOS
@@ -106,16 +97,6 @@ public class ClientePF extends Cliente {
         }
         String placasVeiculosFormatada = String.join(", ", placasVeiculos);
 
-        String listaSinistrosFormatada = "Vazio";
-        if (!getListaSinistros().isEmpty()) {
-            listaSinistrosFormatada = "";
-            ArrayList<String> listaSinistroID = new ArrayList<String>();
-            for (Sinistro sinistro : getListaSinistros()) {
-                listaSinistroID.add(sinistro.getId().toString());
-            }
-            listaSinistrosFormatada = String.join(", ", listaSinistroID);
-        }
-
         String descricao = "";
         descricao += "Nome: " + getNome() + " | ";
         descricao += "CPF: " + getCpf() + " | ";
@@ -128,13 +109,12 @@ public class ClientePF extends Cliente {
         descricao += "Data de licença: " + dataLicencaFormatada + " | ";
         descricao += "Educação: " + getEducacao() + " | ";
         descricao += "Classe econômica: " + getClasseEconomica() + " | ";
-        descricao += "Sinistros: " + listaSinistrosFormatada;
         return descricao;
     }
 
-    // Calcula o valor do seguro do cliente PF 
+    // Calcula o valor do seguro do cliente PF
     // - Retorna: valor do seguro calculado
-    public double calculaScore() { 
+    public double calculaScore() {
         Calendar calendar = new GregorianCalendar();
         int currentYear = calendar.get(Calendar.YEAR);
 
@@ -143,7 +123,7 @@ public class ClientePF extends Cliente {
 
         int idade = currentYear - birthYear;
         double fatorIdade = 1;
-        
+
         if (idade >= 18 && idade < 30) {
             fatorIdade = CalcSeguro.FATOR_18_30.value;
         } else if (idade >= 30 && idade < 60) {
@@ -153,21 +133,23 @@ public class ClientePF extends Cliente {
         } else {
             return (-1);
         }
- 
+
         double score = (CalcSeguro.VALOR_BASE.value * fatorIdade * this.getListaVeiculos().size());
         return score;
     }
 
     // Cadastra um novo veículo para o cliente.
     // - Entrada: Objeto do veículo a ser adicionado
-    // - Retorna: 'true' se o veículo foi adicionado com sucesso e 'false' caso contrário
+    // - Retorna: 'true' se o veículo foi adicionado com sucesso e 'false' caso
+    // contrário
     public boolean cadastrarVeiculo(Veiculo veiculo) {
         return this.getListaVeiculos().add(veiculo);
     }
 
     // Remove um veículo do cliente.
     // - Entrada: Placa do veículo a ser removido
-    // - Retorna: 'true' se o veículo foi removido com sucesso e 'false' caso contrário
+    // - Retorna: 'true' se o veículo foi removido com sucesso e 'false' caso
+    // contrário
     public boolean removerVeiculo(String placa) {
         for (Veiculo veiculo : getListaVeiculos()) {
             if (veiculo.getPlaca().equals(placa)) {

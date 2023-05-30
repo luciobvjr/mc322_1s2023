@@ -54,7 +54,7 @@ public class SeguroPJ extends Seguro {
         valor *= (10 + cliente.getQtdeFuncionarios() / 10);
         // TODO: BASEADO NA QUANTIDADE DE VEÍCULOS
         valor *= (1 + 1/(idade + 2));
-        valor *= (2 + (cliente.getListaSinistros().size() / 10));
+        valor *= (2 + (getListaSinistros().size() / 10));
         valor *= (5 + (sinistrosCondutores / 10));
         return false;
     }

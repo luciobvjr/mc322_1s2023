@@ -244,7 +244,7 @@ public class MenuInterativo {
                 String classeEconomica = scanner.nextLine();
 
                 Cliente cliente = new ClientePF(nomeCliente, endereco, telefone, email, new ArrayList<Veiculo>(), cpf, genero, dataLicenca,
-                                nivelEducacao, dataNascimento, classeEconomica, new ArrayList<Sinistro>());
+                                nivelEducacao, dataNascimento, classeEconomica);
                 seguradora.cadastrarCliente(cliente);
 
                 return;
@@ -303,7 +303,7 @@ public class MenuInterativo {
                 Integer qtdeFuncionarios = Integer.valueOf(qtdeFuncionariosString);
 
                 Cliente cliente = new ClientePJ(nomeCliente, endereco, email, telefone, new ArrayList<Veiculo>(), cnpj,
-                                dataFundacao, qtdeFuncionarios, new ArrayList<Sinistro>());
+                                dataFundacao, qtdeFuncionarios);
                 seguradora.cadastrarCliente(cliente);
         }
 
