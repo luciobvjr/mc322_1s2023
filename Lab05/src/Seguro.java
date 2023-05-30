@@ -87,8 +87,8 @@ public abstract class Seguro {
     // cliente - Cliente relacionado ao sinistro
     // - Retorna: 'true' se o sinistro foi adicionado com sucesso e 'false' caso
     // contrário
-    public boolean gerarSinistro(Date data, String endereco, Veiculo veiculo, Cliente cliente) {
-        Sinistro sinistro = new Sinistro(data, endereco, seguradora, veiculo, cliente);
+    public boolean gerarSinistro(Date data, String endereco, Condutor condutor, Seguro seguro) {
+        Sinistro sinistro = new Sinistro(data, endereco, condutor, seguro);
         return this.listaSinistros.add(sinistro);
     }
 

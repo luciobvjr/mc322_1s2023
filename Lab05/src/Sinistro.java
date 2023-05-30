@@ -6,18 +6,16 @@ public class Sinistro {
     private Integer id;
     private Date data;
     private String endereco;
-    private Seguradora seguradora;
-    private Veiculo veiculo;
-    private Cliente cliente;
+    private Condutor condutor;
+    private Seguro seguro;
 
     // CONSTRUCTOR
-    public Sinistro(Date data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
+    public Sinistro(Date data, String endereco, Condutor condutor, Seguro seguro) {
         this.id = getRandomID();
         this.data = data;
         this.endereco = endereco;
-        this.seguradora = seguradora;
-        this.veiculo = veiculo;
-        this.cliente = cliente;
+        this.condutor = condutor;
+        this.seguro = seguro;
     }
 
     // GETTERS
@@ -33,15 +31,12 @@ public class Sinistro {
         return this.endereco;
     }
 
-    public Seguradora getSeguradora() {
-        return seguradora;
+    public Condutor getCondutor() {
+        return condutor;
     }
 
-    public Veiculo getVeiculo() {
-        return veiculo;
-    }
-    public Cliente getCliente() {
-        return cliente;
+    public Seguro getSeguro() {
+        return seguro;
     }
 
     // SETTERS
@@ -57,16 +52,12 @@ public class Sinistro {
         this.endereco = endereco;
     }
 
-    public void setSeguradora(Seguradora seguradora) {
-        this.seguradora = seguradora;
-    }
-    
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
+    public void setCondutor(Condutor condutor) {
+        this.condutor = condutor;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setSeguro(Seguro seguro) {
+        this.seguro = seguro;
     }
 
     // MÉTODOS PÚBLICOS
@@ -78,9 +69,8 @@ public class Sinistro {
         descricao += "Id: " + id + " | ";
         descricao += "Data: " + dataSinistroFormatada + " | ";
         descricao += "Endereço: " + endereco + " | ";
-        descricao += "Seguradora: " + seguradora.getNome() + " | ";
-        descricao += "Veículo: " + veiculo.getMarca() + " " + veiculo.getModelo() + ", Placa: " + veiculo.getPlaca() + " | ";
-        descricao += "Cliente: " + cliente.getNome(); 
+        descricao += "Condutor: " + condutor.getNome() + " | ";
+        descricao += "Seguro: " + seguro.getId();
         return descricao;
     }
 

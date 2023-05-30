@@ -123,21 +123,6 @@ public class Main {
                                 new ArrayList<Sinistro>(),
                                 new ArrayList<Cliente>());
 
-                // Instanciação de Sinistro
-                Sinistro sinistro = new Sinistro(
-                                new Date(),
-                                "Rua do Sinistro, 123",
-                                seguradora,
-                                motoVeiculo,
-                                clienteFisico1);
-
-                Sinistro sinistro2 = new Sinistro(
-                                new Date(),
-                                "Rua do Jambolão, 123",
-                                seguradora,
-                                fuscaVeiculo,
-                                clienteJuridico1);
-
                 // Cadastro de clientes na seguradora
                 for (ClientePF clientePF : listaClientesPF) {
                         if (Validacao.validarCPF(clientePF.getCpf())) {
@@ -153,18 +138,6 @@ public class Main {
 
                 // Instanciação de Frota
                 Frota frota = new Frota("1", listaVeiculos);
-
-                // Instanciação de Condutor
-                Condutor condutor = new Condutor(
-                                "Nelso",
-                                "Rua do Nelso, 23",
-                                "19912345678",
-                                "nelso@email.com",
-                                "468.039.620-24",
-                                dataNascimento,
-                                new ArrayList<Sinistro>());
-                condutor.adicionarSinistro(sinistro);
-                condutor.adicionarSinistro(sinistro2);
 
                 // Instanciação de Seguro
                 SeguroPF seguroPF = new SeguroPF(
@@ -187,6 +160,23 @@ public class Main {
                                 frota,
                                 clienteJuridico3);
 
+                // Instanciação de Condutor
+                Condutor condutor = new Condutor(
+                                "Nelso",
+                                "Rua do Nelso, 23",
+                                "19912345678",
+                                "nelso@email.com",
+                                "468.039.620-24",
+                                dataNascimento,
+                                new ArrayList<Sinistro>());
+
+                // Instanciação de Sinistro
+                Sinistro sinistro = new Sinistro(new Date(), "Rua do Sinistro, 123", condutor, seguroPF);
+                Sinistro sinistro2 = new Sinistro(new Date(), "Rua do Jambolão, 123", condutor, seguroPJ);
+
+                condutor.adicionarSinistro(sinistro);
+                condutor.adicionarSinistro(sinistro2);
+
                 // Remoção de clientes na seguradora
                 seguradora.removerCliente(clienteFisico3.getCpf());
                 seguradora.removerCliente(clienteJuridico3.getCnpj());
@@ -206,7 +196,6 @@ public class Main {
                 // Chamada de métodos da seguradora
                 seguradora.listarClientes("GERAL");
                 seguradora.listarSinistros();
-                seguradora.visualizarSinistro(clienteFisico1.getCpf());
                 // System.out.println("Receita total da Seguradora TOP: " +
                 // seguradora.calcularReceita() + "\n");
 

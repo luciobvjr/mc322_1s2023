@@ -194,6 +194,8 @@ public class Seguradora {
 
     // Printa sinistro relativo a um cliente"
     // - Entrada: String "cliente" representando o documento de um cliente
+
+    /*
     public void visualizarSinistro(String cliente) {
         boolean clientePessoaFisica = Validacao.validarCPF(cliente);
         boolean clientePessoaJuridica = Validacao.validarCNPJ(cliente);
@@ -224,6 +226,7 @@ public class Seguradora {
         System.out.println("\nErro ao buscar sinistro: Nenhum sinistro relacionado ao cliente com documento " + cliente
                 + " foi encontrado.");
     }
+    */
 
     // Método para encontrar um cliente PF na lista de clientes da seguradora
     // - Entrada: CPF do cliente a ser procurado
