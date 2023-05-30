@@ -182,8 +182,13 @@ public class Main {
                 seguradora.removerCliente(clienteFisico3.getCpf());
                 seguradora.removerCliente(clienteJuridico3.getCnpj());
 
+                // Chamada de métodos da seguradora
+                seguradora.listarClientes("GERAL");
+                seguradora.gerarSeguroPF(clienteFisico3, dataNascimento, dataFundacao, motoVeiculo);
+                seguradora.gerarSeguroPJ(clienteJuridico3, dataNascimento, dataFundacao, frota);
+
                 // Print toString() de cada classe
-                System.out.println("---------- Chamada toString de cada classe:");
+                System.out.println("\n---------- Chamada toString de cada classe:");
                 System.out.println(clienteFisico1.toString() + "\n");
                 System.out.println(clienteJuridico1.toString() + "\n");
                 System.out.println(seguradora.toString() + "\n");
@@ -192,10 +197,7 @@ public class Main {
                 System.out.println(frota.toString() + "\n");
                 System.out.println(condutor.toString() + "\n");
                 System.out.println(seguroPF.toString() + "\n");
-                System.out.println(seguroPJ.toString() + "\n");
-
-                // Chamada de métodos da seguradora
-                seguradora.listarClientes("GERAL");
+                System.out.println(seguroPJ.toString() + "\n");   
 
                 // Método para visualizar dados de seguradora a partir de entrada
                 MenuInterativo.seguradora = seguradora;

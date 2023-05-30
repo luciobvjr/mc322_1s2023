@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -91,7 +92,7 @@ public class Seguradora {
         }
 
         String segurosFormatado = "Vazio";
-        if (listaClientes.isEmpty()) {
+        if (!listaClientes.isEmpty()) {
             List<String> seguros = new ArrayList<String>();
             for (Seguro seguro : listaSeguros) {
                 seguros.add(seguro.getId().toString());
@@ -214,5 +215,15 @@ public class Seguradora {
             }
         }
         return null;
+    }
+
+    public boolean gerarSeguroPF(ClientePF cliente, Date dataInicio, Date dataFim, Veiculo veiculo) {
+        SeguroPF seguroPF = new SeguroPF(dataInicio, dataFim, this, new ArrayList<Sinistro>(), new ArrayList<Condutor>(), 0.0, veiculo, cliente);
+        return listaSeguros.add(seguroPF);
+    }
+
+    public boolean gerarSeguroPJ(ClientePJ cliente, Date dataInicio, Date dataFim, Frota frota) {
+        SeguroPJ seguroPJ = new SeguroPJ(dataInicio, dataFim, this, new ArrayList<Sinistro>(), new ArrayList<Condutor>(), 0.0, frota, cliente);
+        return listaSeguros.add(seguroPJ);
     }
 }
