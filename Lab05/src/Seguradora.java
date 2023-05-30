@@ -226,4 +226,8 @@ public class Seguradora {
         SeguroPJ seguroPJ = new SeguroPJ(dataInicio, dataFim, this, new ArrayList<Sinistro>(), new ArrayList<Condutor>(), 0.0, frota, cliente);
         return listaSeguros.add(seguroPJ);
     }
+
+    public boolean cancelarSeguro(Integer id) {
+        return listaSeguros.removeIf(seguro -> seguro.getId().equals(id));
+    }
 }

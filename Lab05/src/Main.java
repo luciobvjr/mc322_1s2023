@@ -186,6 +186,7 @@ public class Main {
                 seguradora.listarClientes("GERAL");
                 seguradora.gerarSeguroPF(clienteFisico3, dataNascimento, dataFundacao, motoVeiculo);
                 seguradora.gerarSeguroPJ(clienteJuridico3, dataNascimento, dataFundacao, frota);
+                seguradora.cancelarSeguro(seguradora.getListaSeguros().get(0).getId());
 
                 // Print toString() de cada classe
                 System.out.println("\n---------- Chamada toString de cada classe:");
