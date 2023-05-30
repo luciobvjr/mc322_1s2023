@@ -13,7 +13,8 @@ public abstract class Seguro {
     private Double valorMensal;
 
     // CONSTRUTOR
-    public Seguro(Date dataInicio, Date dataFim, Seguradora seguradora, ArrayList<Sinistro> listaSinistros, ArrayList<Condutor> listaCondutores, Double valorMensal) {
+    public Seguro(Date dataInicio, Date dataFim, Seguradora seguradora, ArrayList<Sinistro> listaSinistros,
+            ArrayList<Condutor> listaCondutores, Double valorMensal) {
         this.id = getRandomID();
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -79,7 +80,17 @@ public abstract class Seguro {
 
     // MÉTODOS PÚBLICOS
     public abstract boolean calcularValor();
-    //public abstract boolean gerarSinistro(Sinistro sinistro);
+
+    // Gera um novo sinistro.
+    // - Entrada: endereco - String representando o endereço do sinistro
+    // veiculo - Veiculo da ocorrência do sinistro
+    // cliente - Cliente relacionado ao sinistro
+    // - Retorna: 'true' se o sinistro foi adicionado com sucesso e 'false' caso
+    // contrário
+    public boolean gerarSinistro(Date data, String endereco, Veiculo veiculo, Cliente cliente) {
+        Sinistro sinistro = new Sinistro(data, endereco, seguradora, veiculo, cliente);
+        return this.listaSinistros.add(sinistro);
+    }
 
     public boolean autorizarCondutor(Condutor condutor) {
         return this.getListaCondutores().add(condutor);

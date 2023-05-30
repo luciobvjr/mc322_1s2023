@@ -191,12 +191,6 @@ public class Main {
                 seguradora.removerCliente(clienteFisico3.getCpf());
                 seguradora.removerCliente(clienteJuridico3.getCnpj());
 
-                // Geração de sinistro
-                seguradora.gerarSinistro(sinistro.getData(), sinistro.getEndereco(), sinistro.getVeiculo(),
-                                sinistro.getCliente());
-                seguradora.gerarSinistro(sinistro2.getData(), sinistro2.getEndereco(), sinistro2.getVeiculo(),
-                                sinistro2.getCliente());
-
                 // Print toString() de cada classe
                 System.out.println("---------- Chamada toString de cada classe:");
                 System.out.println(clienteFisico1.toString() + "\n");

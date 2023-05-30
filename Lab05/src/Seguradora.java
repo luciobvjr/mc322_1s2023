@@ -1,4 +1,3 @@
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -179,17 +178,6 @@ public class Seguradora {
         System.out.println("\n---------- Lista de clientes da seguradora: " + this.getNome());
         System.out.println(listaClientedFormatada);
         return;
-    }
-
-    // Gera um novo sinistro.
-    // - Entrada: endereco - String representando o endereço do sinistro
-    // veiculo - Veiculo da ocorrência do sinistro
-    // cliente - Cliente relacionado ao sinistro
-    // - Retorna: 'true' se o sinistro foi adicionado com sucesso e 'false' caso
-    // contrário
-    public boolean gerarSinistro(Date data, String endereco, Veiculo veiculo, Cliente cliente) {
-        Sinistro sinistro = new Sinistro(data, endereco, this, veiculo, cliente);
-        return this.listaSinistros.add(sinistro);
     }
 
     // Printa os sinistros da seguradora.
