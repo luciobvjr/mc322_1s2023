@@ -3,25 +3,31 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Seguradora {
+    private final String cnpj;
     private String nome;
     private String telefone;
     private String email;
     private String endereco;
-    private List<Sinistro> listaSinistros;
-    private List<Cliente> listaClientes;
+    private ArrayList<Cliente> listaClientes;
+    private ArrayList<Seguro> listaSeguros;
 
     // CONSTRUCTOR
-    public Seguradora(String nome, String telefone, String email, String endereco, List<Sinistro> listaSinistros,
-            List<Cliente> listaClientes) {
+    public Seguradora(String cnpj, String nome, String telefone, String email, String endereco,
+            ArrayList<Cliente> listaClientes, ArrayList<Seguro> listaSeguros) {
+        this.cnpj = cnpj;
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
         this.endereco = endereco;
-        this.listaSinistros = listaSinistros;
         this.listaClientes = listaClientes;
+        this.listaSeguros = listaSeguros;
     }
 
     // GETTERS
+    public String getCnpj() {
+        return cnpj;
+    }
+
     public String getNome() {
         return this.nome;
     }
@@ -38,12 +44,12 @@ public class Seguradora {
         return this.endereco;
     }
 
-    public List<Sinistro> getListaSinistros() {
-        return this.listaSinistros;
-    }
-
     public List<Cliente> getListaClientes() {
         return listaClientes;
+    }
+
+    public ArrayList<Seguro> getListaSeguros() {
+        return listaSeguros;
     }
 
     // SETTERS
@@ -63,44 +69,44 @@ public class Seguradora {
         this.endereco = endereco;
     }
 
-    public void setListaSinistros(List<Sinistro> listaSinistros) {
-        this.listaSinistros = listaSinistros;
+    public void setListaClientes(ArrayList<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
     }
 
-    public void setListaClientes(List<Cliente> listaClientes) {
-        this.listaClientes = listaClientes;
+    public void setListaSeguros(ArrayList<Seguro> listaSeguros) {
+        this.listaSeguros = listaSeguros;
     }
 
     // MÉTODOS PÚBLICOS
 
     @Override
     public String toString() {
-        List<String> nomesClientes = new ArrayList<String>();
-        for (Cliente cliente : getListaClientes()) {
-            nomesClientes.add(cliente.getNome());
-        }
-        String nomesClientesFormatado = String.join(", ", nomesClientes);
-        if (nomesClientesFormatado.isBlank()) {
-            nomesClientesFormatado = "Vazio";
+        String nomesClientesFormatado = "Vazio";
+        if (listaClientes.isEmpty()) {
+            List<String> nomesClientes = new ArrayList<String>();
+            for (Cliente cliente : getListaClientes()) {
+                nomesClientes.add(cliente.getNome());
+            }
+            nomesClientesFormatado = String.join(", ", nomesClientes);
         }
 
-        List<String> idSinistros = new ArrayList<String>();
-        for (Sinistro sinistro : getListaSinistros()) {
-            String stringId = sinistro.getId().toString();
-            idSinistros.add(stringId);
-        }
-        String idSinistrosFormatado = String.join(", ", idSinistros);
-        if (idSinistrosFormatado.isBlank()) {
-            idSinistrosFormatado = "Vazio";
+        String segurosFormatado = "Vazio";
+        if (listaClientes.isEmpty()) {
+            List<String> seguros = new ArrayList<String>();
+            for (Seguro seguro : listaSeguros) {
+                seguros.add(seguro.getId().toString());
+            }
+            segurosFormatado = String.join(", ", seguros);
         }
 
         String descricao = "";
+        descricao += "CNPJ: " + getCnpj() + " | ";
         descricao += "Nome: " + getNome() + " | ";
         descricao += "Telefone: " + getTelefone() + " | ";
         descricao += "Email: " + getEmail() + " | ";
-        descricao += "Endereco: " + getEndereco() + " | ";
-        descricao += "Lista de sinistros: " + idSinistrosFormatado + " | ";
-        descricao += "Lista de clientes: " + nomesClientesFormatado;
+        descricao += "Endereço: " + getEndereco() + " | ";
+        descricao += "Lista de clientes: " + nomesClientesFormatado + " | ";
+        descricao += "Lista de seguros: " + segurosFormatado;
         return descricao;
     }
 
@@ -179,54 +185,6 @@ public class Seguradora {
         System.out.println(listaClientedFormatada);
         return;
     }
-
-    // Printa os sinistros da seguradora.
-    public void listarSinistros() {
-        List<String> listaSinistroStrings = new LinkedList<String>();
-
-        for (Sinistro sinistro : listaSinistros) {
-            listaSinistroStrings.add(sinistro.toString());
-        }
-
-        System.out.println("\n---------- Lista de sinistros da seguradora: " + this.getNome());
-        System.out.println(String.join("\n", listaSinistroStrings));
-    }
-
-    // Printa sinistro relativo a um cliente"
-    // - Entrada: String "cliente" representando o documento de um cliente
-
-    /*
-    public void visualizarSinistro(String cliente) {
-        boolean clientePessoaFisica = Validacao.validarCPF(cliente);
-        boolean clientePessoaJuridica = Validacao.validarCNPJ(cliente);
-
-        if (!clientePessoaFisica && !clientePessoaJuridica) {
-            System.out.println("\nErro ao buscar sinistro: Documento do cliente inválido: " + cliente);
-            return;
-        }
-
-        for (Sinistro sinistro : this.getListaSinistros()) {
-            if (clientePessoaFisica && sinistro.getCliente() instanceof ClientePF) {
-                ClientePF clientePF = (ClientePF) sinistro.getCliente();
-                if (clientePF.getCpf().equals(cliente)) {
-                    System.out.println("\n---------- Sinistro relacionado ao cliente com CPF: " + cliente);
-                    System.out.println(sinistro.toString());
-                    return;
-                }
-            } else if (clientePessoaJuridica && sinistro.getCliente() instanceof ClientePJ) {
-                ClientePJ clientePJ = (ClientePJ) sinistro.getCliente();
-                if (clientePJ.getCnpj().equals(cliente)) {
-                    System.out.println("\n---------- Sinistro relacionado ao cliente com CNPJ: " + cliente);
-                    System.out.println(sinistro.toString());
-                    return;
-                }
-            }
-        }
-
-        System.out.println("\nErro ao buscar sinistro: Nenhum sinistro relacionado ao cliente com documento " + cliente
-                + " foi encontrado.");
-    }
-    */
 
     // Método para encontrar um cliente PF na lista de clientes da seguradora
     // - Entrada: CPF do cliente a ser procurado

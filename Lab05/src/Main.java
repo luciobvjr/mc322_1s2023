@@ -116,12 +116,13 @@ public class Main {
 
                 // Instanciação de Seguradora
                 Seguradora seguradora = new Seguradora(
-                                "Seguradora TOP",
-                                "912345678",
-                                "top@seguradora.com",
-                                "rua do seguro, 123",
-                                new ArrayList<Sinistro>(),
-                                new ArrayList<Cliente>());
+                        "34.458.116/0001-90", 
+                        "Seguradora TOP", 
+                        "912345678", 
+                        "top@seguradora.com", 
+                        "rua do seguro, 123", 
+                        new ArrayList<Cliente>(), 
+                        new ArrayList<Seguro>());
 
                 // Cadastro de clientes na seguradora
                 for (ClientePF clientePF : listaClientesPF) {
@@ -195,9 +196,6 @@ public class Main {
 
                 // Chamada de métodos da seguradora
                 seguradora.listarClientes("GERAL");
-                seguradora.listarSinistros();
-                // System.out.println("Receita total da Seguradora TOP: " +
-                // seguradora.calcularReceita() + "\n");
 
                 // Método para visualizar dados de seguradora a partir de entrada
                 MenuInterativo.seguradora = seguradora;

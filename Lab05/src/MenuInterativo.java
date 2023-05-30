@@ -144,6 +144,12 @@ public class MenuInterativo {
         // MÉTODOS PRIVADOS
 
         private static Seguradora criarSeguradora(Scanner scanner) {
+                System.out.println("CNPJ: ");
+                String cnpj = scanner.nextLine();
+                if (Validacao.validarCNPJ(cnpj)) {
+                        System.out.println("\nErro: CNPJ inválido");
+                }
+
                 System.out.println("Nome da seguradora: ");
                 String nomeSeguradora = scanner.nextLine();
                 if (nomeSeguradora.isBlank()) {
@@ -168,8 +174,8 @@ public class MenuInterativo {
                         System.out.println("\nErro: Endereço inválido");
                 }
 
-                Seguradora seguradora = new Seguradora(nomeSeguradora, telefone, email, endereco,
-                                new ArrayList<Sinistro>(), new ArrayList<Cliente>());
+                Seguradora seguradora = new Seguradora(cnpj, nomeSeguradora, telefone, email, endereco,
+                                new ArrayList<Cliente>(), new ArrayList<Seguro>());
 
                 System.out.println("\nSeguradora " + seguradora.getNome() + " cadastrada com sucesso!!!");
 
