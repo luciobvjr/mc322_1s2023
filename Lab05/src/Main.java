@@ -166,6 +166,27 @@ public class Main {
                 condutor.adicionarSinistro(sinistro);
                 condutor.adicionarSinistro(sinistro2);
 
+                // Instanciação de Seguro
+                SeguroPF seguroPF = new SeguroPF(
+                        dataNascimento,
+                        dataFundacao,
+                        seguradora, 
+                        new ArrayList<>(), 
+                        new ArrayList<>(), 
+                        100, 
+                        motoVeiculo, 
+                        clienteFisico3);
+
+                SeguroPJ seguroPJ = new SeguroPJ(
+                        dataNascimento, 
+                        dataFundacao, 
+                        seguradora, 
+                        new ArrayList<>(), 
+                        new ArrayList<>(), 
+                        150, 
+                        frota, 
+                        clienteJuridico3);
+
                 // Remoção de clientes na seguradora
                 seguradora.removerCliente(clienteFisico3.getCpf());
                 seguradora.removerCliente(clienteJuridico3.getCnpj());
@@ -185,6 +206,8 @@ public class Main {
                 System.out.println(fuscaVeiculo.toString() + "\n");
                 System.out.println(frota.toString() + "\n");
                 System.out.println(condutor.toString() + "\n");
+                System.out.println(seguroPF.toString() + "\n");
+                System.out.println(seguroPJ.toString() + "\n");
 
                 // Chamada de métodos da seguradora
                 seguradora.listarClientes("GERAL");
