@@ -81,7 +81,7 @@ public class Seguradora {
             nomesClientes.add(cliente.getNome());
         }
         String nomesClientesFormatado = String.join(", ", nomesClientes);
-        if (nomesClientesFormatado.isBlank()) { 
+        if (nomesClientesFormatado.isBlank()) {
             nomesClientesFormatado = "Vazio";
         }
 
@@ -91,7 +91,7 @@ public class Seguradora {
             idSinistros.add(stringId);
         }
         String idSinistrosFormatado = String.join(", ", idSinistros);
-        if (idSinistrosFormatado.isBlank()) { 
+        if (idSinistrosFormatado.isBlank()) {
             idSinistrosFormatado = "Vazio";
         }
 
@@ -101,20 +101,22 @@ public class Seguradora {
         descricao += "Email: " + getEmail() + " | ";
         descricao += "Endereco: " + getEndereco() + " | ";
         descricao += "Lista de sinistros: " + idSinistrosFormatado + " | ";
-        descricao += "Lista de clientes: " + nomesClientesFormatado; 
+        descricao += "Lista de clientes: " + nomesClientesFormatado;
         return descricao;
     }
 
     // Adiciona um novo cliente na seguradora.
     // - Entrada: Objeto do cliente a ser adicionado
-    // - Retorna: 'true' se o cliente foi adicionado com sucesso e 'false' caso contrário
+    // - Retorna: 'true' se o cliente foi adicionado com sucesso e 'false' caso
+    // contrário
     public boolean cadastrarCliente(Cliente cliente) {
         return this.listaClientes.add(cliente);
     }
 
     // Remove um cliente da seguradora.
     // - Entrada: CPF(caso PF) ou CNPJ(caso PJ) do cliente a ser removido
-    // - Retorna: 'true' se o cliente foi removido com sucesso e 'false' caso contrário
+    // - Retorna: 'true' se o cliente foi removido com sucesso e 'false' caso
+    // contrário
     public boolean removerCliente(String cliente) {
         for (Cliente clienteObj : listaClientes) {
             if (clienteObj instanceof ClientePF) {
@@ -128,14 +130,14 @@ public class Seguradora {
                     return this.listaClientes.remove(clienteObj);
                 }
             }
-        } 
+        }
         return false;
     }
 
     // Printa os clientes da seguradora.
     // - Entrada: String "PF" para listar pessoas físicas
-    //            String "PJ" para listar pessoas jurídicas
-    //            String "GERAL" para listar todos clientes
+    // String "PJ" para listar pessoas jurídicas
+    // String "GERAL" para listar todos clientes
     public void listarClientes(String tipoCliente) {
         List<String> listaClientesStrings = new LinkedList<String>();
 
@@ -168,7 +170,8 @@ public class Seguradora {
                 }
                 break;
             default:
-                System.out.println("Tipo de cliente inválido. Tente 'PF' para listar pessoas físicas, 'PJ' para listar pessoas jurídicas ou 'GERAL' para listar todos os clientes");
+                System.out.println(
+                        "Tipo de cliente inválido. Tente 'PF' para listar pessoas físicas, 'PJ' para listar pessoas jurídicas ou 'GERAL' para listar todos os clientes");
                 return;
         }
 
@@ -180,9 +183,10 @@ public class Seguradora {
 
     // Gera um novo sinistro.
     // - Entrada: endereco - String representando o endereço do sinistro
-    //            veiculo - Veiculo da ocorrência do sinistro
-    //            cliente - Cliente relacionado ao sinistro
-    // - Retorna: 'true' se o sinistro foi adicionado com sucesso e 'false' caso contrário
+    // veiculo - Veiculo da ocorrência do sinistro
+    // cliente - Cliente relacionado ao sinistro
+    // - Retorna: 'true' se o sinistro foi adicionado com sucesso e 'false' caso
+    // contrário
     public boolean gerarSinistro(Date data, String endereco, Veiculo veiculo, Cliente cliente) {
         Sinistro sinistro = new Sinistro(data, endereco, this, veiculo, cliente);
         return this.listaSinistros.add(sinistro);
@@ -229,7 +233,8 @@ public class Seguradora {
             }
         }
 
-        System.out.println("\nErro ao buscar sinistro: Nenhum sinistro relacionado ao cliente com documento " + cliente + " foi encontrado.");
+        System.out.println("\nErro ao buscar sinistro: Nenhum sinistro relacionado ao cliente com documento " + cliente
+                + " foi encontrado.");
     }
 
     public void calcularPrecoSeguroCliente() {
@@ -253,5 +258,35 @@ public class Seguradora {
         }
 
         return receita;
+    }
+
+    // Método para encontrar um cliente PF na lista de clientes da seguradora
+    // - Entrada: CPF do cliente a ser procurado
+    // - Retorna: Cliente se for encontrado na lista e 'null' caso contrário
+    public ClientePF getClientePF(String cpf) {
+        for (Cliente cliente : getListaClientes()) {
+            if (cliente instanceof ClientePF) {
+                ClientePF clientePF = (ClientePF) cliente;
+                if (clientePF.getCpf().equals(cpf)) {
+                    return clientePF;
+                }
+            }
+        }
+        return null;
+    }
+
+    // Método para encontrar um cliente PJ na lista de clientes da seguradora
+    // - Entrada: CNPJ do cliente a ser procurado
+    // - Retorna: Cliente se for encontrado na lista e 'null' caso contrário
+    public ClientePJ getClientePJ(String cnpj) {
+        for (Cliente cliente : getListaClientes()) {
+            if (cliente instanceof ClientePJ) {
+                ClientePJ clientePJ = (ClientePJ) cliente;
+                if (clientePJ.getCnpj().equals(cnpj)) {
+                    return clientePJ;
+                }
+            }
+        }
+        return null;
     }
 }

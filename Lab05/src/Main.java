@@ -169,9 +169,7 @@ public class Main {
         System.out.println("Receita total da Seguradora TOP: " + seguradora.calcularReceita() + "\n");
 
         // Método para visualizar dados de seguradora a partir de entrada
-        List<Seguradora> seguradoras = new ArrayList<>();
-        seguradoras.add(seguradora);
-
-        MenuInterativo.menuPrincipal(seguradoras);
+        MenuInterativo.seguradora = seguradora;
+        MenuInterativo.menuPrincipal();
     }
 }

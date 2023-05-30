@@ -11,7 +11,9 @@ import Menu.MenuListar;
 import Menu.MenuOperacoes;
 
 public class MenuInterativo {
-        public static void menuPrincipal(List<Seguradora> seguradoras) {
+        public static Seguradora seguradora;
+
+        public static void menuPrincipal() {
                 String menuTextual = "";
                 menuTextual += "\nDigite o número em frente à ação descrita para realizá-la:\n";
                 menuTextual += "0 - Sair\n";
@@ -29,11 +31,11 @@ public class MenuInterativo {
                 if (input.equals(MenuOperacoes.SAIR.operacao)) {
                         // encerrar o programa
                 } else if (input.equals(MenuOperacoes.CADASTRAR.operacao)) {
-                        menuCadastro(seguradoras);
+                        menuCadastro();
                 } else if (input.equals(MenuOperacoes.LISTAR.operacao)) {
-                        menuListar(seguradoras);
+                        menuListar();
                 } else if (input.equals(MenuOperacoes.EXCLUIR.operacao)) {
-                        menuExcluir(seguradoras);
+                        menuExcluir();
                 } else if (input.equals(MenuOperacoes.GERAR_SINISTRO.operacao)) {
                         // gerar sinistro
                 } else if (input.equals(MenuOperacoes.TRANSFERIR_SEGURO.operacao)) {
@@ -47,7 +49,7 @@ public class MenuInterativo {
                 scanner.close();
         }
 
-        public static void menuCadastro(List<Seguradora> seguradoras) {
+        public static void menuCadastro() {
                 String menuTextual = "";
                 menuTextual += "\nDigite o número em frente à ação descrita para realizá-la:\n";
                 menuTextual += "0 - Voltar\n";
@@ -61,20 +63,21 @@ public class MenuInterativo {
                 String input = scanner.nextLine();
 
                 if (input.equals(MenuCadastro.VOLTAR.operacao)) {
-                        menuPrincipal(seguradoras);
+                        menuPrincipal();
                 } else if (input.equals(MenuCadastro.CADASTRAR_CLIENTE_PF.operacao)) {
-                        cadastrarClientePF(scanner, seguradoras);
-                        menuPrincipal(seguradoras);
+                        cadastrarClientePF(scanner);
+                        menuPrincipal();
                 } else if (input.equals(MenuCadastro.CADASTRAR_CLIENTE_PJ.operacao)) {
-                        cadastrarClientePJ(scanner, seguradoras);
-                        menuPrincipal(seguradoras);
+                        cadastrarClientePJ(scanner);
+                        menuPrincipal();
                 } else if (input.equals(MenuCadastro.CADASTRAR_VEICULO.operacao)) {
-                        // Cadastrar veículo
+                        cadastrarVeiculo(scanner);
+                        menuPrincipal();
                 } else if (input.equals(MenuCadastro.CADASTRAR_SEGURADORA.operacao)) {
                         Seguradora seguradora = criarSeguradora(scanner);
-                        seguradoras.add(seguradora);
-                        System.out.println(seguradoras);
-                        menuPrincipal(seguradoras);
+                        MenuInterativo.seguradora = seguradora;
+                        System.out.println(seguradora);
+                        menuPrincipal();
                 } else {
                         System.out.println("Operação inválida. Tente novamente com uma das opções apresentadas.");
                 }
@@ -82,7 +85,7 @@ public class MenuInterativo {
                 scanner.close();
         }
 
-        public static void menuListar(List<Seguradora> seguradoras) {
+        public static void menuListar() {
                 String menuTextual = "";
                 menuTextual += "\nDigite o número em frente à ação descrita para realizá-la:\n";
                 menuTextual += "0 - Voltar\n";
@@ -96,7 +99,7 @@ public class MenuInterativo {
                 String input = scanner.nextLine();
 
                 if (input.equals(MenuListar.VOLTAR.operacao)) {
-                        menuPrincipal(seguradoras);
+                        menuPrincipal();
                 } else if (input.equals(MenuListar.LISTAR_CLIENTES_GERAL.operacao)) {
                         // Listar todos os clientes
                 } else if (input.equals(MenuListar.LISTAR_CLIENTES_PF.operacao)) {
@@ -112,7 +115,7 @@ public class MenuInterativo {
                 scanner.close();
         }
 
-        public static void menuExcluir(List<Seguradora> seguradoras) {
+        public static void menuExcluir() {
                 String menuTextual = "";
                 menuTextual += "\nDigite o número em frente à ação descrita para realizá-la:\n";
                 menuTextual += "0 - Voltar\n";
@@ -123,9 +126,9 @@ public class MenuInterativo {
 
                 Scanner scanner = new Scanner(System.in);
                 String input = scanner.nextLine();
-                
+
                 if (input.equals(MenuExcluir.VOLTAR.operacao)) {
-                        menuPrincipal(seguradoras);
+                        menuPrincipal();
                 } else if (input.equals(MenuExcluir.EXCLUIR_CLIENTE.operacao)) {
                         // Excluir cliente
                 } else if (input.equals(MenuExcluir.EXCLUIR_VEICULO.operacao)) {
@@ -168,149 +171,176 @@ public class MenuInterativo {
 
                 Seguradora seguradora = new Seguradora(nomeSeguradora, telefone, email, endereco,
                                 new ArrayList<Sinistro>(), new ArrayList<Cliente>());
-                                
+
                 System.out.println("\nSeguradora " + seguradora.getNome() + " cadastrada com sucesso!!!");
 
                 return seguradora;
         }
 
-        private static void cadastrarClientePF(Scanner scanner, List<Seguradora> seguradoras) {
+        private static void cadastrarClientePF(Scanner scanner) {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-                System.out.println("Nome da seguradora: ");
-                String nomeSeguradora = scanner.nextLine();
-
-                if (nomeSeguradora.isBlank()) {
-                        System.out.println("\nErro: Nome da seguradora inválido");
+                System.out.println("\nNome do cliente: ");
+                String nomeCliente = scanner.nextLine();
+                if (nomeCliente.isBlank()) {
+                        System.out.println("\nErro: Nome inválido");
                         return;
                 }
 
-                for (Seguradora seguradora : seguradoras) {
-                        if (seguradora.getNome().equals(nomeSeguradora)) {
-                                System.out.println("\nNome do cliente: ");
-                                String nomeCliente = scanner.nextLine();
-                                if (nomeCliente.isBlank()) {
-                                        System.out.println("\nErro: Nome inválido");
-                                        return;
-                                }
-
-                                System.out.println("\nEndereço do cliente");
-                                String endereco = scanner.nextLine();
-                                if (endereco.isBlank()) {
-                                        System.out.println("\nErro: Endereço inválido");
-                                        return;
-                                }
-
-                                System.out.println("\nTelefone do cliente");
-                                String telefone = scanner.nextLine();
-                                if (endereco.isBlank()) {
-                                        System.out.println("\nErro: Telefone inválido");
-                                        return;
-                                }
-
-                                System.out.println("\nCPF do cliente: ");
-                                String cpf = scanner.nextLine();
-                                if (!Validacao.validarCPF(cpf)) {
-                                        System.out.println("\nErro: CPF inválido");
-                                        return;
-                                }
-
-                                System.out.println("\nGênero do cliente: ");
-                                String genero = scanner.nextLine();
-
-                                System.out.println("\nData de licença do cliente (DD/MM/AAAA): ");
-                                String dataLicencaString = scanner.nextLine();
-                                Date dataLicenca;
-                                try {
-                                        dataLicenca = dateFormat.parse(dataLicencaString);
-                                } catch (ParseException e) {
-                                        System.out.println("Erro: Data inválida");
-                                        return;
-                                }
-
-                                System.out.println("\nNível de educação do cliente: ");
-                                String nivelEducacao = scanner.nextLine();
-
-                                System.out.println("\nData de nascimento do cliente (DD/MM/AAAA): ");
-                                String dataNascimentoString = scanner.nextLine();
-                                Date dataNascimento;
-                                try {
-                                        dataNascimento = dateFormat.parse(dataNascimentoString);
-                                } catch (ParseException e) {
-                                        System.out.println("\nErro: Data inválida");
-                                        return;
-                                }
-
-                                System.out.println("\nClasse econômica do cliente: ");
-                                String classeEconomica = scanner.nextLine();
-
-                                Cliente cliente = new ClientePF(nomeCliente, endereco, telefone, null, cpf, genero, dataLicenca, nivelEducacao, dataNascimento, classeEconomica);
-                                seguradora.cadastrarCliente(cliente);
-                        }
-
+                System.out.println("\nEndereço do cliente");
+                String endereco = scanner.nextLine();
+                if (endereco.isBlank()) {
+                        System.out.println("\nErro: Endereço inválido");
                         return;
                 }
+
+                System.out.println("\nTelefone do cliente");
+                String telefone = scanner.nextLine();
+                if (endereco.isBlank()) {
+                        System.out.println("\nErro: Telefone inválido");
+                        return;
+                }
+
+                System.out.println("\nCPF do cliente: ");
+                String cpf = scanner.nextLine();
+                if (!Validacao.validarCPF(cpf)) {
+                        System.out.println("\nErro: CPF inválido");
+                        return;
+                }
+
+                System.out.println("\nGênero do cliente: ");
+                String genero = scanner.nextLine();
+
+                System.out.println("\nData de licença do cliente (DD/MM/AAAA): ");
+                String dataLicencaString = scanner.nextLine();
+                Date dataLicenca;
+                try {
+                        dataLicenca = dateFormat.parse(dataLicencaString);
+                } catch (ParseException e) {
+                        System.out.println("Erro: Data inválida");
+                        return;
+                }
+
+                System.out.println("\nNível de educação do cliente: ");
+                String nivelEducacao = scanner.nextLine();
+
+                System.out.println("\nData de nascimento do cliente (DD/MM/AAAA): ");
+                String dataNascimentoString = scanner.nextLine();
+                Date dataNascimento;
+                try {
+                        dataNascimento = dateFormat.parse(dataNascimentoString);
+                } catch (ParseException e) {
+                        System.out.println("\nErro: Data inválida");
+                        return;
+                }
+
+                System.out.println("\nClasse econômica do cliente: ");
+                String classeEconomica = scanner.nextLine();
+
+                Cliente cliente = new ClientePF(nomeCliente, endereco, telefone, null, cpf, genero, dataLicenca,
+                                nivelEducacao, dataNascimento, classeEconomica);
+                seguradora.cadastrarCliente(cliente);
+
+                return;
         }
 
-        private static void cadastrarClientePJ(Scanner scanner, List<Seguradora> seguradoras) {
+        private static void cadastrarClientePJ(Scanner scanner) {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-                System.out.println("Nome da seguradora: ");
-                String nomeSeguradora = scanner.nextLine();
-
-                if (nomeSeguradora.isBlank()) {
-                        System.out.println("\nErro: Nome da seguradora inválido");
+                System.out.println("\nNome do cliente: ");
+                String nomeCliente = scanner.nextLine();
+                if (nomeCliente.isBlank()) {
+                        System.out.println("\nErro: Nome inválido");
                         return;
                 }
 
-                for (Seguradora seguradora : seguradoras) {
-                        if (seguradora.getNome().equals(nomeSeguradora)) {
-                                System.out.println("\nNome do cliente: ");
-                                String nomeCliente = scanner.nextLine();
-                                if (nomeCliente.isBlank()) {
-                                        System.out.println("\nErro: Nome inválido");
-                                        return;
-                                }
-
-                                System.out.println("\nEndereço do cliente");
-                                String endereco = scanner.nextLine();
-                                if (endereco.isBlank()) {
-                                        System.out.println("\nErro: Endereço inválido");
-                                        return;
-                                }
-
-                                System.out.println("\nEndereço do cliente");
-                                String telefone = scanner.nextLine();
-                                if (endereco.isBlank()) {
-                                        System.out.println("\nErro: Endereço inválido");
-                                        return;
-                                }
-
-                                System.out.println("CNPJ do cliente: ");
-                                String cnpj = scanner.nextLine();
-                                if (!Validacao.validarCNPJ(cnpj)) {
-                                        System.out.println("\nErro: CNPJ inválido");
-                                        return;
-                                }
-
-                                System.out.println("\nData de fundação da empresa (DD/MM/AAAA): ");
-                                String dataFundacaoString = scanner.nextLine();
-                                Date dataFundacao;
-                                try {
-                                        dataFundacao = dateFormat.parse(dataFundacaoString);
-                                } catch (ParseException e) {
-                                        System.out.println("\nErro: Data inválida");
-                                        return;
-                                }
-
-                                System.out.println("\nQuantidade de funcionários: ");
-                                String qtdeFuncionariosString = scanner.nextLine();
-                                Integer qtdeFuncionarios = Integer.valueOf(qtdeFuncionariosString);
-
-                                Cliente cliente = new ClientePJ(nomeCliente, endereco, telefone, null, cnpj, dataFundacao, qtdeFuncionarios);
-                                seguradora.cadastrarCliente(cliente);
-                        }
+                System.out.println("\nEndereço do cliente");
+                String endereco = scanner.nextLine();
+                if (endereco.isBlank()) {
+                        System.out.println("\nErro: Endereço inválido");
+                        return;
                 }
+
+                System.out.println("\nEndereço do cliente");
+                String telefone = scanner.nextLine();
+                if (endereco.isBlank()) {
+                        System.out.println("\nErro: Endereço inválido");
+                        return;
+                }
+
+                System.out.println("CNPJ do cliente: ");
+                String cnpj = scanner.nextLine();
+                if (!Validacao.validarCNPJ(cnpj)) {
+                        System.out.println("\nErro: CNPJ inválido");
+                        return;
+                }
+
+                System.out.println("\nData de fundação da empresa (DD/MM/AAAA): ");
+                String dataFundacaoString = scanner.nextLine();
+                Date dataFundacao;
+                try {
+                        dataFundacao = dateFormat.parse(dataFundacaoString);
+                } catch (ParseException e) {
+                        System.out.println("\nErro: Data inválida");
+                        return;
+                }
+
+                System.out.println("\nQuantidade de funcionários: ");
+                String qtdeFuncionariosString = scanner.nextLine();
+                Integer qtdeFuncionarios = Integer.valueOf(qtdeFuncionariosString);
+
+                Cliente cliente = new ClientePJ(nomeCliente, endereco, telefone, null, cnpj,
+                                dataFundacao, qtdeFuncionarios);
+                seguradora.cadastrarCliente(cliente);
         }
 
+        private static void cadastrarVeiculo(Scanner scanner) {
+                System.out.println("\nCPF do cliente: ");
+                String cpf = scanner.nextLine();
+                if (!Validacao.validarCPF(cpf)) {
+                        System.out.println("\nErro: CPF inválido");
+                        return;
+                }
+
+                ClientePF clientePF = seguradora.getClientePF(cpf);
+                if (clientePF == null) {
+                        System.out.println("\nErro: Cliente inexistente");
+                        return;
+                }
+
+                System.out.println("\nPlaca: ");
+                String placa = scanner.nextLine();
+                if (placa.isBlank()) {
+                        System.out.println("\nErro: Placa inválida");
+                        return;
+                }
+
+                System.out.println("\nMarca");
+                String marca = scanner.nextLine();
+                if (marca.isBlank()) {
+                        System.out.println("\nErro: Marca inválida");
+                        return;
+                }
+
+                System.out.println("\nModelo");
+                String modelo = scanner.nextLine();
+                if (modelo.isBlank()) {
+                        System.out.println("\nErro: Modelo inválido");
+                        return;
+                }
+
+                System.out.println("\nAno de fabricação: ");
+                String anoFabricacaoString = scanner.nextLine();
+                Integer anoFabricacao = Integer.valueOf(anoFabricacaoString);
+
+                if (anoFabricacaoString.isBlank() || anoFabricacao > 2023) {
+                        System.out.println("\nErro: Ano de fabricação inválido");
+                        return;
+                }
+
+                Veiculo veiculo = new Veiculo(placa, marca, modelo, anoFabricacao);
+                clientePF.cadastrarVeiculo(veiculo);
+
+                System.out.println("\nVeículo " + veiculo.getPlaca() + " cadastrada com sucesso para o cliente " + clientePF.getNome() + " !!!");
+        }
 }

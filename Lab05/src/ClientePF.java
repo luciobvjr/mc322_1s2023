@@ -123,4 +123,36 @@ public class ClientePF extends Cliente {
         double score = (CalcSeguro.VALOR_BASE.value * fatorIdade * this.getListaVeiculos().size());
         return score;
     }
+
+    // Cadastra um novo veículo para o cliente.
+    // - Entrada: Objeto do veículo a ser adicionado
+    // - Retorna: 'true' se o veículo foi adicionado com sucesso e 'false' caso contrário
+    public boolean cadastrarVeiculo(Veiculo veiculo) {
+        return this.getListaVeiculos().add(veiculo);
+    }
+
+    // Remove um veículo do cliente.
+    // - Entrada: Placa do veículo a ser removido
+    // - Retorna: 'true' se o veículo foi removido com sucesso e 'false' caso contrário
+    public boolean removerVeiculo(String placa) {
+        for (Veiculo veiculo : getListaVeiculos()) {
+            if (veiculo.getPlaca().equals(placa)) {
+                return this.getListaVeiculos().remove(veiculo);
+            }
+        }
+
+        return false;
+    }
+
+    // Método para encontrar um veículo na lista de veículos do cliente
+    // - Entrada: Placa do veículo a ser procurado
+    // - Retorna: Veículo se for encontrado na lista e 'null' caso contrário
+    public Veiculo getVeiculo(String placa) {
+        for (Veiculo veiculo : getListaVeiculos()) {
+            if (veiculo.getPlaca().equals(placa)) {
+                return veiculo;
+            }
+        }
+        return null;
+    }
 }
