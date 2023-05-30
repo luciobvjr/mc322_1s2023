@@ -1,4 +1,7 @@
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,10 +16,11 @@ public class ClientePF extends Cliente {
     private Date dataNascimento;
     private String classeEconomica;
     private ArrayList<Veiculo> listaVeiculos;
+    private ArrayList<Sinistro> listaSinistros;
 
     // CONSTRUTOR
     public ClientePF(String nome, String endereco, String telefone, String email, ArrayList<Veiculo> listaVeiculos, String cpf, String genero, 
-                     Date dataLicenca, String educacao, Date dataNascimento, String classeEconomica) {
+                     Date dataLicenca, String educacao, Date dataNascimento, String classeEconomica, ArrayList<Sinistro> listaSinistros) {
         super(nome, endereco, telefone, email);
         this.cpf = cpf;
         this.genero = genero;
@@ -25,6 +29,7 @@ public class ClientePF extends Cliente {
         this.dataNascimento = dataNascimento;
         this.classeEconomica = classeEconomica;
         this.listaVeiculos = listaVeiculos;
+        this.listaSinistros = listaSinistros;
     }
 
     // GETTERS
@@ -56,6 +61,10 @@ public class ClientePF extends Cliente {
         return listaVeiculos;
     }
 
+    public ArrayList<Sinistro> getListaSinistros() {
+        return listaSinistros;
+    }
+
     // SETTERS
     public void setGenero(String genero) {
         this.genero = genero;
@@ -81,6 +90,10 @@ public class ClientePF extends Cliente {
         this.listaVeiculos = listaVeiculos;
     }
 
+    public void setListaSinistros(ArrayList<Sinistro> listaSinistros) {
+        this.listaSinistros = listaSinistros;
+    }
+
     // MÉTODOS PÚBLICOS
     @Override
     public String toString() {
@@ -93,6 +106,16 @@ public class ClientePF extends Cliente {
         }
         String placasVeiculosFormatada = String.join(", ", placasVeiculos);
 
+        String listaSinistrosFormatada = "Vazio";
+        if (!getListaSinistros().isEmpty()) {
+            listaSinistrosFormatada = "";
+            ArrayList<String> listaSinistroID = new ArrayList<String>();
+            for (Sinistro sinistro : getListaSinistros()) {
+                listaSinistroID.add(sinistro.getId().toString());
+            }
+            listaSinistrosFormatada = String.join(", ", listaSinistroID);
+        }
+
         String descricao = "";
         descricao += "Nome: " + getNome() + " | ";
         descricao += "CPF: " + getCpf() + " | ";
@@ -104,7 +127,8 @@ public class ClientePF extends Cliente {
         descricao += "Lista de veículos: " + placasVeiculosFormatada + " | ";
         descricao += "Data de licença: " + dataLicencaFormatada + " | ";
         descricao += "Educação: " + getEducacao() + " | ";
-        descricao += "Classe econômica: " + getClasseEconomica();
+        descricao += "Classe econômica: " + getClasseEconomica() + " | ";
+        descricao += "Sinistros: " + listaSinistrosFormatada;
         return descricao;
     }
 
@@ -164,5 +188,15 @@ public class ClientePF extends Cliente {
             }
         }
         return null;
+    }
+
+    // Caldula idade do cliente a partir da data de nascimento
+    // - Retorna: Idade do cliente em anos
+    public Integer calcularIdade() {
+        LocalDate dataNascimentoLocalDate = dataNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate dataAtual = LocalDate.now();
+        Period periodo = Period.between(dataNascimentoLocalDate, dataAtual);
+        int idade = periodo.getYears();
+        return idade;
     }
 }

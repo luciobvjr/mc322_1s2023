@@ -42,7 +42,8 @@ public class Main {
                                 dataLicenca,
                                 "Ensino médio completo",
                                 dataNascimento,
-                                "Média");
+                                "Média",
+                                new ArrayList<Sinistro>());
 
                 ClientePF clienteFisico2 = new ClientePF(
                                 "Poliana Moça de Azevedo",
@@ -55,7 +56,8 @@ public class Main {
                                 dataLicenca,
                                 "Ensino médio cursando",
                                 dataNascimento,
-                                "Média");
+                                "Média",
+                                new ArrayList<Sinistro>());
 
                 ClientePF clienteFisico3 = new ClientePF(
                                 "Tirulipa de Almeida",
@@ -68,7 +70,8 @@ public class Main {
                                 dataLicenca,
                                 "Doutorando em física nuclear",
                                 dataNascimento,
-                                "Média");
+                                "Média",
+                                new ArrayList<Sinistro>());
 
                 List<ClientePF> listaClientesPF = new ArrayList<ClientePF>();
                 listaClientesPF.add(clienteFisico1);
@@ -87,7 +90,8 @@ public class Main {
                                 listaVeiculos,
                                 "04.490.765/0001-08",
                                 dataFundacao,
-                                5000);
+                                5000,
+                                new ArrayList<Sinistro>());
 
                 ClientePJ clienteJuridico2 = new ClientePJ(
                                 "Consultório da Zezé",
@@ -97,7 +101,8 @@ public class Main {
                                 listaVeiculos,
                                 "75.907.387/0001-63",
                                 dataFundacao,
-                                20);
+                                20,
+                                new ArrayList<Sinistro>());
 
                 ClientePJ clienteJuridico3 = new ClientePJ(
                                 "Empresa teste",
@@ -107,7 +112,8 @@ public class Main {
                                 listaVeiculos,
                                 "65.496.143/0001-81",
                                 dataFundacao,
-                                30);
+                                30,
+                                new ArrayList<Sinistro>());
 
                 List<ClientePJ> listaClientesPJ = new ArrayList<ClientePJ>();
                 listaClientesPJ.add(clienteJuridico1);
@@ -168,24 +174,24 @@ public class Main {
 
                 // Instanciação de Seguro
                 SeguroPF seguroPF = new SeguroPF(
-                        dataNascimento,
-                        dataFundacao,
-                        seguradora, 
-                        new ArrayList<>(), 
-                        new ArrayList<>(), 
-                        100, 
-                        motoVeiculo, 
-                        clienteFisico3);
+                                dataNascimento,
+                                dataFundacao,
+                                seguradora,
+                                new ArrayList<>(),
+                                new ArrayList<>(),
+                                100.0,
+                                motoVeiculo,
+                                clienteFisico3);
 
                 SeguroPJ seguroPJ = new SeguroPJ(
-                        dataNascimento, 
-                        dataFundacao, 
-                        seguradora, 
-                        new ArrayList<>(), 
-                        new ArrayList<>(), 
-                        150, 
-                        frota, 
-                        clienteJuridico3);
+                                dataNascimento,
+                                dataFundacao,
+                                seguradora,
+                                new ArrayList<>(),
+                                new ArrayList<>(),
+                                150.0,
+                                frota,
+                                clienteJuridico3);
 
                 // Remoção de clientes na seguradora
                 seguradora.removerCliente(clienteFisico3.getCpf());

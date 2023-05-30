@@ -243,8 +243,8 @@ public class MenuInterativo {
                 System.out.println("\nClasse econômica do cliente: ");
                 String classeEconomica = scanner.nextLine();
 
-                Cliente cliente = new ClientePF(nomeCliente, endereco, telefone, email, null, cpf, genero, dataLicenca,
-                                nivelEducacao, dataNascimento, classeEconomica);
+                Cliente cliente = new ClientePF(nomeCliente, endereco, telefone, email, new ArrayList<Veiculo>(), cpf, genero, dataLicenca,
+                                nivelEducacao, dataNascimento, classeEconomica, new ArrayList<Sinistro>());
                 seguradora.cadastrarCliente(cliente);
 
                 return;
@@ -302,8 +302,8 @@ public class MenuInterativo {
                 String qtdeFuncionariosString = scanner.nextLine();
                 Integer qtdeFuncionarios = Integer.valueOf(qtdeFuncionariosString);
 
-                Cliente cliente = new ClientePJ(nomeCliente, endereco, email, telefone, null, cnpj,
-                                dataFundacao, qtdeFuncionarios);
+                Cliente cliente = new ClientePJ(nomeCliente, endereco, email, telefone, new ArrayList<Veiculo>(), cnpj,
+                                dataFundacao, qtdeFuncionarios, new ArrayList<Sinistro>());
                 seguradora.cadastrarCliente(cliente);
         }
 
