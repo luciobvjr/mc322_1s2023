@@ -9,8 +9,8 @@ public class ClientePJ extends Cliente {
     private int qtdeFuncionarios;
 
     // CONSTRUTOR
-    public ClientePJ(String nome, String endereco, List<Veiculo> listaVeiculos, String cnpj, Date dataFundacao, int qtdeFuncionarios) {
-        super(nome, endereco, listaVeiculos);
+    public ClientePJ(String nome, String endereco, String telefone, List<Veiculo> listaVeiculos, String cnpj, Date dataFundacao, int qtdeFuncionarios) {
+        super(nome, endereco, telefone, listaVeiculos);
         this.cnpj = cnpj;
         this.dataFundacao = dataFundacao;
         this.qtdeFuncionarios = qtdeFuncionarios;
@@ -54,6 +54,7 @@ public class ClientePJ extends Cliente {
         descricao += "CNPJ: " + getCnpj() + " | ";
         descricao += "Data de Fundação: " + dataFundacaoFormadata + " | ";
         descricao += "Endereço: " + getEndereco() + " | ";
+        descricao += "Telefone: " + getTelefone() + " | ";
         descricao += "Lista de veículos: " + placasVeiculosFormatada;
         return descricao;
     }

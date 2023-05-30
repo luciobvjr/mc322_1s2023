@@ -201,6 +201,13 @@ public class MenuInterativo {
                                         return;
                                 }
 
+                                System.out.println("\nTelefone do cliente");
+                                String telefone = scanner.nextLine();
+                                if (endereco.isBlank()) {
+                                        System.out.println("\nErro: Telefone inválido");
+                                        return;
+                                }
+
                                 System.out.println("\nCPF do cliente: ");
                                 String cpf = scanner.nextLine();
                                 if (!Validacao.validarCPF(cpf)) {
@@ -237,7 +244,7 @@ public class MenuInterativo {
                                 System.out.println("\nClasse econômica do cliente: ");
                                 String classeEconomica = scanner.nextLine();
 
-                                Cliente cliente = new ClientePF(nomeCliente, endereco, null, cpf, genero, dataLicenca, nivelEducacao, dataNascimento, classeEconomica);
+                                Cliente cliente = new ClientePF(nomeCliente, endereco, telefone, null, cpf, genero, dataLicenca, nivelEducacao, dataNascimento, classeEconomica);
                                 seguradora.cadastrarCliente(cliente);
                         }
 
@@ -272,6 +279,13 @@ public class MenuInterativo {
                                         return;
                                 }
 
+                                System.out.println("\nEndereço do cliente");
+                                String telefone = scanner.nextLine();
+                                if (endereco.isBlank()) {
+                                        System.out.println("\nErro: Endereço inválido");
+                                        return;
+                                }
+
                                 System.out.println("CNPJ do cliente: ");
                                 String cnpj = scanner.nextLine();
                                 if (!Validacao.validarCNPJ(cnpj)) {
@@ -293,7 +307,7 @@ public class MenuInterativo {
                                 String qtdeFuncionariosString = scanner.nextLine();
                                 Integer qtdeFuncionarios = Integer.valueOf(qtdeFuncionariosString);
 
-                                Cliente cliente = new ClientePJ(nomeCliente, endereco, null, cnpj, dataFundacao, qtdeFuncionarios);
+                                Cliente cliente = new ClientePJ(nomeCliente, endereco, telefone, null, cnpj, dataFundacao, qtdeFuncionarios);
                                 seguradora.cadastrarCliente(cliente);
                         }
                 }

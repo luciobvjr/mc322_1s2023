@@ -1,24 +1,33 @@
 import java.util.List;
 
-public class Cliente {
+public abstract class Cliente {
     private String nome;
     private String endereco;
+    private String telefone;
     private List<Veiculo> listaVeiculos;
     private double valorSeguro;
 
     // CONSTRUTOR
-    public Cliente(String nome, String endereco, List<Veiculo> listaVeiculos) {
+    public Cliente(String nome, String endereco, String telefone, List<Veiculo> listaVeiculos) {
         this.nome = nome;
         this.endereco = endereco;
+        this.telefone = telefone;
         this.listaVeiculos = listaVeiculos;
     }
+
     // GETTERS
     public String getNome() {
         return this.nome;
     }
+
     public String getEndereco() {
         return this.endereco;
     }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
     public List<Veiculo> getListaVeiculos() {
         return listaVeiculos;
     }
@@ -31,9 +40,15 @@ public class Cliente {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     public void setListaVeiculos(List<Veiculo> listaVeiculos) {
         this.listaVeiculos = listaVeiculos;
     }

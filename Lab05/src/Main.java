@@ -34,6 +34,7 @@ public class Main {
         ClientePF clienteFisico1 = new ClientePF(
                 "Michael Jackson da Silva",
                 "rua do Michael, 123",
+                "19912345678",
                 listaVeiculos,
                 "641.171.160-70",
                 "Masculino",
@@ -45,6 +46,7 @@ public class Main {
         ClientePF clienteFisico2 = new ClientePF(
                 "Poliana Moça de Azevedo",
                 "rua da Poliana, 123",
+                "19912345678",
                 listaVeiculos,
                 "395.519.440-03",
                 "Feminino",
@@ -56,6 +58,7 @@ public class Main {
         ClientePF clienteFisico3 = new ClientePF(
                 "Tirulipa de Almeida",
                 "rua do Tirulipa, 123",
+                "19912345678",
                 listaVeiculos,
                 "927.323.970-67",
                 "Masculino",
@@ -76,6 +79,7 @@ public class Main {
         ClientePJ clienteJuridico1 = new ClientePJ(
                 "Unicamp Sorvetes",
                 "Rua Zeferino Vaz, 321",
+                "19912345678",
                 listaVeiculos,
                 "04.490.765/0001-08",
                 dataFundacao,
@@ -84,6 +88,7 @@ public class Main {
         ClientePJ clienteJuridico2 = new ClientePJ(
                 "Consultório da Zezé",
                 "Rua da Zezé, 321",
+                "19912345678",
                 listaVeiculos,
                 "75.907.387/0001-63",
                 dataFundacao,
@@ -92,6 +97,7 @@ public class Main {
         ClientePJ clienteJuridico3 = new ClientePJ(
                 "Empresa teste",
                 "Rua da empresa, 321",
+                "19912345678",
                 listaVeiculos,
                 "65.496.143/0001-81",
                 dataFundacao,

@@ -14,9 +14,9 @@ public class ClientePF extends Cliente {
     private String classeEconomica;
 
     // CONSTRUTOR
-    public ClientePF(String nome, String endereco, List<Veiculo> listaVeiculos, String cpf, String genero, 
+    public ClientePF(String nome, String endereco, String telefone, List<Veiculo> listaVeiculos, String cpf, String genero, 
                      Date dataLicenca, String educacao, Date dataNascimento, String classeEconomica) {
-        super(nome, endereco, listaVeiculos);
+        super(nome, endereco, telefone, listaVeiculos);
         this.cpf = cpf;
         this.genero = genero;
         this.dataLicenca = dataLicenca;
@@ -90,6 +90,7 @@ public class ClientePF extends Cliente {
         descricao += "Gênero: " + getGenero() + " | ";
         descricao += "Data de nascimento: " + dataNascimentoFormadata + " | ";
         descricao += "Endereço: " + getEndereco() + " | ";
+        descricao += "Telefone: " + getTelefone() + " | ";
         descricao += "Lista de veículos: " + placasVeiculosFormatada + " | ";
         descricao += "Data de licença: " + dataLicencaFormatada + " | ";
         descricao += "Educação: " + getEducacao() + " | ";
